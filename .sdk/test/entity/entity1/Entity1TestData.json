@@ -1,0 +1,53 @@
+{
+  "existing": {
+    "entity1": {
+      "ENTITY100": {
+        "asn": {},
+        "city": "s51",
+        "continent": "s52",
+        "country": "s53",
+        "ip": "s54",
+        "location": {},
+        "postal": "s56",
+        "subdivision": "s57",
+        "id": "ENTITY100"
+      },
+      "ENTITY101": {
+        "asn": {},
+        "city": "sa1",
+        "continent": "sa2",
+        "country": "sa3",
+        "ip": "sa4",
+        "location": {},
+        "postal": "sa6",
+        "subdivision": "sa7",
+        "id": "ENTITY101"
+      },
+      "ENTITY102": {
+        "asn": {},
+        "city": "sf1",
+        "continent": "sf2",
+        "country": "sf3",
+        "ip": "sf4",
+        "location": {},
+        "postal": "sf6",
+        "subdivision": "sf7",
+        "id": "ENTITY102"
+      }
+    }
+  },
+  "new": {
+    "entity1": {
+      "entity1_ref01": {
+        "asn": {},
+        "city": "s141",
+        "continent": "s142",
+        "country": "s143",
+        "ip": "s144",
+        "location": {},
+        "postal": "s146",
+        "subdivision": "s147"
+      }
+    }
+  }
+}

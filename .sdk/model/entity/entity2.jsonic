@@ -1,0 +1,43 @@
+# Entity: entity2
+
+main: kit: entity: entity2: {
+
+  alias: field: {}
+
+  name: "entity2"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "city,asn"
+                kind: "query"
+                name: "field"
+                orig: "field"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/"
+          select: {
+            exist: [
+              "field"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

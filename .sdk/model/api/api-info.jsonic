@@ -1,0 +1,19 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      description: "IP geolocation API"
+      servers: [
+        {
+          url: "https://api.country.is"
+        }
+      ]
+      title: "Country"
+      version: "4.2.3"
+    }
+  }
+}
+
+}

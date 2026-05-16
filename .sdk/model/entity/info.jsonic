@@ -1,0 +1,47 @@
+# Entity: info
+
+main: kit: entity: info: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "data_source"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "last_updated"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "version"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "info"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/info"
+          parts: [
+            "info"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

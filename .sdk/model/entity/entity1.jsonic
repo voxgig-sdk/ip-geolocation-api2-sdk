@@ -1,0 +1,86 @@
+# Entity: entity1
+
+main: kit: entity: entity1: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "asn"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "city"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "continent"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "country"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "ip"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "location"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "postal"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "subdivision"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "entity1"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "city,asn"
+                kind: "query"
+                name: "field"
+                orig: "field"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/"
+          select: {
+            exist: [
+              "field"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

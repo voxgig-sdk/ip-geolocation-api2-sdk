@@ -1,0 +1,33 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 4
+  metrics: count: path: 3
+  metrics: count: method: 4
+
+  entity: entity1: {
+    path: "/": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: entity2: {
+    path: "/": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: entity3: {
+    path: "/{ip}": {
+      rename: param: "ip": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: info: {
+    path: "/info": {
+      op: list: method: *GET
+    }
+  }
+
+}

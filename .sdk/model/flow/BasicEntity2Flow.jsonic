@@ -1,0 +1,18 @@
+# BasicEntity2Flow
+
+main: kit: flow: BasicEntity2Flow:
+{
+  entity: "entity2",
+  kind: "basic",
+  name: "BasicEntity2Flow",
+  step: [
+    {
+      input: {
+        ref: "entity2_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicEntity2Flow"
+}

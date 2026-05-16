@@ -1,0 +1,20 @@
+{
+  "existing": {
+    "entity2": {
+      "ENTITY200": {
+        "id": "ENTITY200"
+      },
+      "ENTITY201": {
+        "id": "ENTITY201"
+      },
+      "ENTITY202": {
+        "id": "ENTITY202"
+      }
+    }
+  },
+  "new": {
+    "entity2": {
+      "entity2_ref01": {}
+    }
+  }
+}
