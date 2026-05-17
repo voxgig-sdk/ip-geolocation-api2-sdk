@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/ip-geolocation-api2-sdk/core"
+import "github.com/voxgig-sdk/ip-geolocation-api2-sdk/go/core"
 
 func prepareMethodUtil(ctx *core.Context) string {
 	opname := ctx.Op.Name

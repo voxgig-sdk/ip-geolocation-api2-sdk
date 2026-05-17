@@ -3,7 +3,7 @@ package core
 import (
 	"fmt"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/ip-geolocation-api2-sdk/go/utility/struct"
 )
 
 type IpGeolocationApi2SDK struct {

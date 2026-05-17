@@ -1,7 +1,7 @@
 package core
 
 import (
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/ip-geolocation-api2-sdk/go/utility/struct"
 )
 
 type Result struct {

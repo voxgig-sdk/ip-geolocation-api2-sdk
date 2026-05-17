@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/ip-geolocation-api2-sdk"
-	"github.com/voxgig-sdk/ip-geolocation-api2-sdk/core"
+	sdk "github.com/voxgig-sdk/ip-geolocation-api2-sdk/go"
+	"github.com/voxgig-sdk/ip-geolocation-api2-sdk/go/core"
 )
 
 func TestEntity3Direct(t *testing.T) {

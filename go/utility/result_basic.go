@@ -3,7 +3,7 @@ package utility
 import (
 	"fmt"
 
-	"github.com/voxgig-sdk/ip-geolocation-api2-sdk/core"
+	"github.com/voxgig-sdk/ip-geolocation-api2-sdk/go/core"
 )
 
 func resultBasicUtil(ctx *core.Context) *core.Result {
