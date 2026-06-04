@@ -69,14 +69,12 @@ def entity3_direct_setup(mockres)
   env = Runner.env_override({
     "IPGEOLOCATIONAPI__TEST_ENTITY__ENTID" => {},
     "IPGEOLOCATIONAPI__TEST_LIVE" => "FALSE",
-    "IPGEOLOCATIONAPI__APIKEY" => "NONE",
   })
 
   live = env["IPGEOLOCATIONAPI__TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["IPGEOLOCATIONAPI__APIKEY"],
     }
     client = IpGeolocationApi2SDK.new(merged_opts)
     return {

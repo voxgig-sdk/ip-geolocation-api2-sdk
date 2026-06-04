@@ -12,8 +12,29 @@ main: {
       ]
       title: "Country"
       version: "4.2.3"
+      tagline: "Free, key-less IP-to-country lookup (with optional city, ASN and coordinates) backed by MaxMind GeoLite2"
+      homepage: "https://country.is"
+      docs_url: "https://country.is"
+      license_short: "Free for commercial use; no API key required"
+      license_md: `- Operated as a free public service by Line of Flight, free for commercial use
+- No API key, no quotas, no request logging
+- Infrastructure rate-limits to 10 requests per second per IP to prevent abuse
+- Geolocation data comes from MaxMind GeoLite2 (updated daily); Cloudflare geolocation is used when available`
+      about_md: `[Country](https://country.is) is a minimal IP geolocation API run by [Line of Flight](https://country.is). At its simplest it returns the two-letter country code for an IP address, but optional \`fields\` extend the response with city, continent, subdivision, postal code, coordinates and ASN.
+
+What you get from the API:
+
+- \`GET /\` — country of the caller's own IP
+- \`GET /{ip}\` — country (and optional fields) for a specific IPv4 or IPv6 address
+- \`POST /\` — batch lookup of up to 100 IPs in a single JSON array
+- \`GET /info\` — metadata about the dataset, including last-update time
+- A \`?fields=\` query parameter on lookup endpoints to add \`city\`, \`continent\`, \`subdivision\`, \`postal\`, \`location\` and \`asn\`
+
+Operational notes: the service requires no authentication and imposes no daily quota, but the infrastructure caps each client IP at roughly 10 requests per second. Underlying data is refreshed daily from MaxMind GeoLite2, and no request logs are kept.`
+      entity_desc: {
+        info: "Dataset metadata about the geolocation database, including last-update time, served from `GET /info`."
+      }
+      auth: false
     }
   }
-}
-
 }

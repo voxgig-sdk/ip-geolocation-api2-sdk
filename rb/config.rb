@@ -15,9 +15,6 @@ module IpGeolocationApi2Config
       },
       "options" => {
         "base" => "https://api.country.is",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

@@ -20,9 +20,7 @@ loading a specific record.
 <?php
 require_once 'ipgeolocationapi2_sdk.php';
 
-$client = new IpGeolocationApi2SDK([
-    "apikey" => getenv("IP-GEOLOCATION-API2_APIKEY"),
-]);
+$client = new IpGeolocationApi2SDK([]);
 ```
 
 ### 3. Load a entity1
@@ -113,7 +111,6 @@ Create a `.env.local` file at the project root:
 
 ```
 IP-GEOLOCATION-API2_TEST_LIVE=TRUE
-IP-GEOLOCATION-API2_APIKEY=<your-key>
 ```
 
 Then run:
@@ -136,7 +133,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

@@ -68,14 +68,12 @@ function info_direct_setup($mockres)
     $env = Runner::env_override([
         "IPGEOLOCATIONAPI__TEST_INFO_ENTID" => [],
         "IPGEOLOCATIONAPI__TEST_LIVE" => "FALSE",
-        "IPGEOLOCATIONAPI__APIKEY" => "NONE",
     ]);
 
     $live = $env["IPGEOLOCATIONAPI__TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["IPGEOLOCATIONAPI__APIKEY"],
         ];
         $client = new IpGeolocationApi2SDK($merged_opts);
         return [

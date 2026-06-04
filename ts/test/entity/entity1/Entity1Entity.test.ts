@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'IP_GEOLOCATION_API__TEST_ENTITY__ENTID': idmap,
     'IP_GEOLOCATION_API__TEST_LIVE': 'FALSE',
     'IP_GEOLOCATION_API__TEST_EXPLAIN': 'FALSE',
-    'IP_GEOLOCATION_API__APIKEY': 'NONE',
   })
 
   idmap = env['IP_GEOLOCATION_API__TEST_ENTITY__ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new IpGeolocationApi2SDK(merge([
       {
-        apikey: env.IP_GEOLOCATION_API__APIKEY,
       },
       extra
     ]))

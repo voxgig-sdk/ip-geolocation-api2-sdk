@@ -79,14 +79,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'IPGEOLOCATIONAPI__TEST_INFO_ENTID': {},
     'IPGEOLOCATIONAPI__TEST_LIVE': 'FALSE',
-    'IPGEOLOCATIONAPI__APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.IPGEOLOCATIONAPI__TEST_LIVE
 
   if (live) {
     const client = new IpGeolocationApi2SDK({
-      apikey: env.IPGEOLOCATIONAPI__APIKEY,
     })
 
     let idmap: any = env['IPGEOLOCATIONAPI__TEST_INFO_ENTID']
