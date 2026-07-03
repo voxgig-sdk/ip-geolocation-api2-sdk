@@ -14,6 +14,9 @@ local function make_config()
     },
     options = {
       base = "https://api.country.is",
+      auth = {
+        prefix = "Bearer",
+      },
       headers = {
         ["content-type"] = "application/json",
       },
@@ -28,83 +31,86 @@ local function make_config()
       ["entity1"] = {
         ["fields"] = {
           {
+            ["active"] = true,
             ["name"] = "asn",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["active"] = true,
             ["index$"] = 0,
           },
           {
+            ["active"] = true,
             ["name"] = "city",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["active"] = true,
             ["index$"] = 1,
           },
           {
+            ["active"] = true,
             ["name"] = "continent",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["active"] = true,
             ["index$"] = 2,
           },
           {
+            ["active"] = true,
             ["name"] = "country",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["active"] = true,
             ["index$"] = 3,
           },
           {
+            ["active"] = true,
             ["name"] = "ip",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["active"] = true,
             ["index$"] = 4,
           },
           {
+            ["active"] = true,
             ["name"] = "location",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["active"] = true,
             ["index$"] = 5,
           },
           {
+            ["active"] = true,
             ["name"] = "postal",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["active"] = true,
             ["index$"] = 6,
           },
           {
+            ["active"] = true,
             ["name"] = "subdivision",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["active"] = true,
             ["index$"] = 7,
           },
         },
         ["name"] = "entity1",
         ["op"] = {
           ["load"] = {
+            ["input"] = "data",
             ["name"] = "load",
             ["points"] = {
               {
+                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
+                      ["active"] = true,
                       ["example"] = "city,asn",
                       ["kind"] = "query",
                       ["name"] = "field",
                       ["orig"] = "field",
                       ["reqd"] = false,
                       ["type"] = "`$STRING`",
-                      ["active"] = true,
                     },
                   },
                 },
                 ["method"] = "GET",
                 ["orig"] = "/",
+                ["parts"] = {},
                 ["select"] = {
                   ["exist"] = {
                     "field",
@@ -114,12 +120,9 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["active"] = true,
-                ["parts"] = {},
                 ["index$"] = 0,
               },
             },
-            ["input"] = "data",
             ["key$"] = "load",
           },
         },
@@ -132,24 +135,27 @@ local function make_config()
         ["name"] = "entity2",
         ["op"] = {
           ["create"] = {
+            ["input"] = "data",
             ["name"] = "create",
             ["points"] = {
               {
+                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
+                      ["active"] = true,
                       ["example"] = "city,asn",
                       ["kind"] = "query",
                       ["name"] = "field",
                       ["orig"] = "field",
                       ["reqd"] = false,
                       ["type"] = "`$STRING`",
-                      ["active"] = true,
                     },
                   },
                 },
                 ["method"] = "POST",
                 ["orig"] = "/",
+                ["parts"] = {},
                 ["select"] = {
                   ["exist"] = {
                     "field",
@@ -159,12 +165,9 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["active"] = true,
-                ["parts"] = {},
                 ["index$"] = 0,
               },
             },
-            ["input"] = "data",
             ["key$"] = "create",
           },
         },
@@ -175,89 +178,91 @@ local function make_config()
       ["entity3"] = {
         ["fields"] = {
           {
+            ["active"] = true,
             ["name"] = "asn",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["active"] = true,
             ["index$"] = 0,
           },
           {
+            ["active"] = true,
             ["name"] = "city",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["active"] = true,
             ["index$"] = 1,
           },
           {
+            ["active"] = true,
             ["name"] = "continent",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["active"] = true,
             ["index$"] = 2,
           },
           {
+            ["active"] = true,
             ["name"] = "country",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["active"] = true,
             ["index$"] = 3,
           },
           {
+            ["active"] = true,
             ["name"] = "ip",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["active"] = true,
             ["index$"] = 4,
           },
           {
+            ["active"] = true,
             ["name"] = "location",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["active"] = true,
             ["index$"] = 5,
           },
           {
+            ["active"] = true,
             ["name"] = "postal",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["active"] = true,
             ["index$"] = 6,
           },
           {
+            ["active"] = true,
             ["name"] = "subdivision",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["active"] = true,
             ["index$"] = 7,
           },
         },
         ["name"] = "entity3",
         ["op"] = {
           ["load"] = {
+            ["input"] = "data",
             ["name"] = "load",
             ["points"] = {
               {
+                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
+                      ["active"] = true,
                       ["example"] = "8.8.8.8",
                       ["kind"] = "param",
                       ["name"] = "id",
                       ["orig"] = "ip",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["active"] = true,
                     },
                   },
                   ["query"] = {
                     {
+                      ["active"] = true,
                       ["example"] = "city,asn",
                       ["kind"] = "query",
                       ["name"] = "field",
                       ["orig"] = "field",
                       ["reqd"] = false,
                       ["type"] = "`$STRING`",
-                      ["active"] = true,
                     },
                   },
                 },
@@ -281,11 +286,9 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["active"] = true,
                 ["index$"] = 0,
               },
             },
-            ["input"] = "data",
             ["key$"] = "load",
           },
         },
@@ -296,49 +299,49 @@ local function make_config()
       ["info"] = {
         ["fields"] = {
           {
+            ["active"] = true,
             ["name"] = "data_source",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["active"] = true,
             ["index$"] = 0,
           },
           {
+            ["active"] = true,
             ["name"] = "last_updated",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["active"] = true,
             ["index$"] = 1,
           },
           {
+            ["active"] = true,
             ["name"] = "version",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["active"] = true,
             ["index$"] = 2,
           },
         },
         ["name"] = "info",
         ["op"] = {
           ["list"] = {
+            ["input"] = "data",
             ["name"] = "list",
             ["points"] = {
               {
+                ["active"] = true,
+                ["args"] = {},
                 ["method"] = "GET",
                 ["orig"] = "/info",
                 ["parts"] = {
                   "info",
                 },
+                ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["active"] = true,
-                ["args"] = {},
-                ["select"] = {},
                 ["index$"] = 0,
               },
             },
-            ["input"] = "data",
             ["key$"] = "list",
           },
         },

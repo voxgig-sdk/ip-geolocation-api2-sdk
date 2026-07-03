@@ -83,6 +83,7 @@ def info_basic_setup(extra)
     "IPGEOLOCATIONAPI__TEST_INFO_ENTID" => idmap,
     "IPGEOLOCATIONAPI__TEST_LIVE" => "FALSE",
     "IPGEOLOCATIONAPI__TEST_EXPLAIN" => "FALSE",
+    "IPGEOLOCATIONAPI__APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,6 +95,7 @@ def info_basic_setup(extra)
   if env["IPGEOLOCATIONAPI__TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
+        "apikey" => env["IPGEOLOCATIONAPI__APIKEY"],
       },
       extra || {},
     ])

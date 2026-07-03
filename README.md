@@ -1,22 +1,8 @@
 # IpGeolocationApi2 SDK
 
-Free, key-less IP-to-country lookup (with optional city, ASN and coordinates) backed by MaxMind GeoLite2
+Country client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Country
-
-[Country](https://country.is) is a minimal IP geolocation API run by [Line of Flight](https://country.is). At its simplest it returns the two-letter country code for an IP address, but optional `fields` extend the response with city, continent, subdivision, postal code, coordinates and ASN.
-
-What you get from the API:
-
-- `GET /` — country of the caller's own IP
-- `GET /{ip}` — country (and optional fields) for a specific IPv4 or IPv6 address
-- `POST /` — batch lookup of up to 100 IPs in a single JSON array
-- `GET /info` — metadata about the dataset, including last-update time
-- A `?fields=` query parameter on lookup endpoints to add `city`, `continent`, `subdivision`, `postal`, `location` and `asn`
-
-Operational notes: the service requires no authentication and imposes no daily quota, but the infrastructure caps each client IP at roughly 10 requests per second. Underlying data is refreshed daily from MaxMind GeoLite2, and no request logs are kept.
 
 ## Try it
 
@@ -50,27 +36,31 @@ gem install ip-geolocation-api2-sdk
 luarocks install ip-geolocation-api2-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { IpGeolocationApi2SDK } from 'ip-geolocation-api2'
 
-const client = new IpGeolocationApi2SDK({})
+const client = new IpGeolocationApi2SDK({
+  apikey: process.env.IP-GEOLOCATION-API2_APIKEY,
+})
 
+// Load entity1 data
+const entity1 = await client.Entity1().load({})
+console.log(entity1.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -103,7 +93,7 @@ The API exposes 4 entities:
 | **Entity1** |  | `/` |
 | **Entity2** |  | `/` |
 | **Entity3** |  | `/{ip}` |
-| **Info** | Dataset metadata about the geolocation database, including last-update time, served from `GET /info`. | `/info` |
+| **Info** |  | `/info` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -113,15 +103,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from ipgeolocationapi2_sdk import IpGeolocationApi2SDK
 
-client = IpGeolocationApi2SDK({})
+client = IpGeolocationApi2SDK({
+    "apikey": os.environ.get("IP-GEOLOCATION-API2_APIKEY"),
+})
 
 
 # Load a specific entity1
-entity1, err = client.Entity1(None).load(
-    {"id": "example_id"}, None
-)
+entity1, err = client.Entity1().load({"id": "example_id"})
+print(entity1)
 ```
 
 ### PHP
@@ -130,13 +122,14 @@ entity1, err = client.Entity1(None).load(
 <?php
 require_once 'ipgeolocationapi2_sdk.php';
 
-$client = new IpGeolocationApi2SDK([]);
+$client = new IpGeolocationApi2SDK([
+    "apikey" => getenv("IP-GEOLOCATION-API2_APIKEY"),
+]);
 
 
 // Load a specific entity1
-[$entity1, $err] = $client->Entity1(null)->load(
-    ["id" => "example_id"], null
-);
+[$entity1, $err] = $client->Entity1()->load(["id" => "example_id"]);
+print_r($entity1);
 ```
 
 ### Golang
@@ -144,8 +137,13 @@ $client = new IpGeolocationApi2SDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/ip-geolocation-api2-sdk/go"
 
-client := sdk.NewIpGeolocationApi2SDK(map[string]any{})
+client := sdk.NewIpGeolocationApi2SDK(map[string]any{
+    "apikey": os.Getenv("IP-GEOLOCATION-API2_APIKEY"),
+})
 
+// Load entity1 data
+entity1, err := client.Entity1(nil).Load(map[string]any{}, nil)
+fmt.Println(entity1)
 ```
 
 ### Ruby
@@ -153,13 +151,14 @@ client := sdk.NewIpGeolocationApi2SDK(map[string]any{})
 ```ruby
 require_relative "IpGeolocationApi2_sdk"
 
-client = IpGeolocationApi2SDK.new({})
+client = IpGeolocationApi2SDK.new({
+  "apikey" => ENV["IP-GEOLOCATION-API2_APIKEY"],
+})
 
 
 # Load a specific entity1
-entity1, err = client.Entity1(nil).load(
-  { "id" => "example_id" }, nil
-)
+entity1, err = client.Entity1().load({ "id" => "example_id" })
+puts entity1
 ```
 
 ### Lua
@@ -167,13 +166,14 @@ entity1, err = client.Entity1(nil).load(
 ```lua
 local sdk = require("ip-geolocation-api2_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("IP-GEOLOCATION-API2_APIKEY"),
+})
 
 
 -- Load a specific entity1
-local entity1, err = client:Entity1(nil):load(
-  { id = "example_id" }, nil
-)
+local entity1, err = client:Entity1():load({ id = "example_id" })
+print(entity1)
 ```
 
 ## Unit testing in offline mode
@@ -192,25 +192,21 @@ const result = await client.Entity1().load({ id: 'test01' })
 ### Python
 
 ```python
-client = IpGeolocationApi2SDK.test(None, None)
-result, err = client.Entity1(None).load(
-    {"id": "test01"}, None
-)
+client = IpGeolocationApi2SDK.test()
+result, err = client.Entity1().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = IpGeolocationApi2SDK::test(null, null);
-[$result, $err] = $client->Entity1(null)->load(
-    ["id" => "test01"], null
-);
+$client = IpGeolocationApi2SDK::test();
+[$result, $err] = $client->Entity1()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Entity1(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -219,19 +215,15 @@ result, err := client.Entity1(nil).Load(
 ### Ruby
 
 ```ruby
-client = IpGeolocationApi2SDK.test(nil, nil)
-result, err = client.Entity1(nil).load(
-  { "id" => "test01" }, nil
-)
+client = IpGeolocationApi2SDK.test
+result, err = client.Entity1().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Entity1(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Entity1():load({ id = "test01" })
 ```
 
 ## How it works
@@ -335,15 +327,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Country
-
-- Upstream: [https://country.is](https://country.is)
-
-- Operated as a free public service by Line of Flight, free for commercial use
-- No API key, no quotas, no request logging
-- Infrastructure rate-limits to 10 requests per second per IP to prevent abuse
-- Geolocation data comes from MaxMind GeoLite2 (updated daily); Cloudflare geolocation is used when available
 
 ---
 

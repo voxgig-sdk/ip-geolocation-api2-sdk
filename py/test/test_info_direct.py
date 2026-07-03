@@ -61,12 +61,14 @@ def _info_direct_setup(mockres):
     env = runner.env_override({
         "IPGEOLOCATIONAPI__TEST_INFO_ENTID": {},
         "IPGEOLOCATIONAPI__TEST_LIVE": "FALSE",
+        "IPGEOLOCATIONAPI__APIKEY": "NONE",
     })
 
     live = env.get("IPGEOLOCATIONAPI__TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("IPGEOLOCATIONAPI__APIKEY"),
         }
         client = IpGeolocationApi2SDK(merged_opts)
         return {

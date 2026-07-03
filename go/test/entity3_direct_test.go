@@ -110,12 +110,14 @@ func entity3DirectSetup(mockres any) *entity3DirectSetupResult {
 	env := envOverride(map[string]any{
 		"IPGEOLOCATIONAPI__TEST_ENTITY__ENTID": map[string]any{},
 		"IPGEOLOCATIONAPI__TEST_LIVE":    "FALSE",
+		"IPGEOLOCATIONAPI__APIKEY":       "NONE",
 	})
 
 	live := env["IPGEOLOCATIONAPI__TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["IPGEOLOCATIONAPI__APIKEY"],
 		}
 		client := sdk.NewIpGeolocationApi2SDK(mergedOpts)
 

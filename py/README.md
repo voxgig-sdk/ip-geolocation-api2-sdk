@@ -1,6 +1,11 @@
 # IpGeolocationApi2 Python SDK
 
-The Python SDK for the IpGeolocationApi2 API. Provides an entity-oriented interface following Pythonic conventions.
+
+
+The Python SDK for the IpGeolocationApi2 API — an entity-oriented client following Pythonic conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -23,15 +28,18 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
+import os
 from ipgeolocationapi2_sdk import IpGeolocationApi2SDK
 
-client = IpGeolocationApi2SDK({})
+client = IpGeolocationApi2SDK({
+    "apikey": os.environ.get("IP-GEOLOCATION-API2_APIKEY"),
+})
 ```
 
 ### 3. Load a entity1
 
 ```python
-result, err = client.Entity1(None).load({"id": "example_id"}, None)
+result, err = client.Entity1().load({"id": "example_id"})
 if err:
     raise Exception(err)
 print(result)
@@ -79,11 +87,9 @@ print(fetchdef["headers"])
 Create a mock client for unit testing — no server required:
 
 ```python
-client = IpGeolocationApi2SDK.test(None, None)
+client = IpGeolocationApi2SDK.test()
 
-result, err = client.IpGeolocationApi2(None).load(
-    {"id": "test01"}, None
-)
+result, err = client.IpGeolocationApi2().load({"id": "test01"})
 # result contains mock response data
 ```
 
@@ -114,6 +120,7 @@ Create a `.env.local` file at the project root:
 
 ```
 IP-GEOLOCATION-API2_TEST_LIVE=TRUE
+IP-GEOLOCATION-API2_APIKEY=<your-key>
 ```
 
 Then run:
@@ -137,6 +144,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |
