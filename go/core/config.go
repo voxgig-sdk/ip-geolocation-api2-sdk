@@ -14,9 +14,6 @@ func MakeConfig() map[string]any {
 		},
 		"options": map[string]any{
 			"base": "https://api.country.is",
-			"auth": map[string]any{
-				"prefix": "Bearer",
-			},
 			"headers": map[string]any{
 				"content-type": "application/json",
 			},
@@ -252,6 +249,7 @@ func MakeConfig() map[string]any {
 											"orig": "ip",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{

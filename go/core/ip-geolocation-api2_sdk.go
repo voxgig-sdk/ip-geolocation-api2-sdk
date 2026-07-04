@@ -245,21 +245,33 @@ func (sdk *IpGeolocationApi2SDK) Direct(fetchargs map[string]any) (map[string]an
 }
 
 
+// Entity1 returns a Entity1 entity bound to this client.
+// Idiomatic usage: client.Entity1(nil).List(nil, nil) or
+// client.Entity1(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpGeolocationApi2SDK) Entity1(data map[string]any) IpGeolocationApi2Entity {
 	return NewEntity1EntityFunc(sdk, data)
 }
 
 
+// Entity2 returns a Entity2 entity bound to this client.
+// Idiomatic usage: client.Entity2(nil).List(nil, nil) or
+// client.Entity2(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpGeolocationApi2SDK) Entity2(data map[string]any) IpGeolocationApi2Entity {
 	return NewEntity2EntityFunc(sdk, data)
 }
 
 
+// Entity3 returns a Entity3 entity bound to this client.
+// Idiomatic usage: client.Entity3(nil).List(nil, nil) or
+// client.Entity3(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpGeolocationApi2SDK) Entity3(data map[string]any) IpGeolocationApi2Entity {
 	return NewEntity3EntityFunc(sdk, data)
 }
 
 
+// Info returns a Info entity bound to this client.
+// Idiomatic usage: client.Info(nil).List(nil, nil) or
+// client.Info(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpGeolocationApi2SDK) Info(data map[string]any) IpGeolocationApi2Entity {
 	return NewInfoEntityFunc(sdk, data)
 }

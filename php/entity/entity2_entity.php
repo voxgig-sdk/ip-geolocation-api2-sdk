@@ -55,6 +55,9 @@ class Entity2Entity
         return new Entity2Entity($this->_client, $opts);
     }
 
+    /**
+     * @param Entity2|array $args Entity2 data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class Entity2Entity
         }
     }
 
+    /**
+     * @return Entity2|array The current Entity2 data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Entity2 fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class Entity2Entity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Entity2 fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -88,7 +100,16 @@ class Entity2Entity
     
 
     
-    public function create($reqdata, $ctrl = null): array
+    /**
+     * Create a new Entity2.
+     *
+     * @param Entity2CreateData|array|null $reqdata Body data as an assoc-array;
+     *   a typed Entity2CreateData names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Entity2|array The created Entity2 as an assoc-array at the
+     *   SDK boundary; throws IpGeolocationApi2Error on failure (item-5 convention).
+     */
+    public function create(?array $reqdata = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -114,7 +135,7 @@ class Entity2Entity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

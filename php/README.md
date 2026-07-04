@@ -9,9 +9,10 @@ The PHP SDK for the IpGeolocationApi2 API — an entity-oriented client using PH
 
 
 ## Install
-```bash
-composer require voxgig-sdk/ip-geolocation-api2
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/ip-geolocation-api2-sdk/releases](https://github.com/voxgig-sdk/ip-geolocation-api2-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,17 +26,18 @@ loading a specific record.
 <?php
 require_once 'ipgeolocationapi2_sdk.php';
 
-$client = new IpGeolocationApi2SDK([
-    "apikey" => getenv("IP-GEOLOCATION-API2_APIKEY"),
-]);
+$client = new IpGeolocationApi2SDK();
 ```
 
-### 3. Load a entity1
+### 3. Load an entity1
 
 ```php
-[$result, $err] = $client->Entity1()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->entity1()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -46,28 +48,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -81,7 +86,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = IpGeolocationApi2SDK::test();
 
-[$result, $err] = $client->IpGeolocationApi2()->load(["id" => "test01"]);
+$result = $client->entity1()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -115,8 +120,7 @@ $client = new IpGeolocationApi2SDK([
 Create a `.env.local` file at the project root:
 
 ```
-IP-GEOLOCATION-API2_TEST_LIVE=TRUE
-IP-GEOLOCATION-API2_APIKEY=<your-key>
+IP_GEOLOCATION_API2_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -139,7 +143,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -188,8 +191,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -264,7 +271,7 @@ API path: `/info`
 
 ### Entity1
 
-Create an instance: `const entity1 = client.Entity1()`
+Create an instance: `const entity1 = client.entity1`
 
 #### Operations
 
@@ -288,13 +295,13 @@ Create an instance: `const entity1 = client.Entity1()`
 #### Example: Load
 
 ```ts
-const entity1 = await client.Entity1().load({ id: 'entity1_id' })
+const entity1 = await client.entity1.load({ id: 'entity1_id' })
 ```
 
 
 ### Entity2
 
-Create an instance: `const entity2 = client.Entity2()`
+Create an instance: `const entity2 = client.entity2`
 
 #### Operations
 
@@ -305,14 +312,14 @@ Create an instance: `const entity2 = client.Entity2()`
 #### Example: Create
 
 ```ts
-const entity2 = await client.Entity2().create({
+const entity2 = await client.entity2.create({
 })
 ```
 
 
 ### Entity3
 
-Create an instance: `const entity3 = client.Entity3()`
+Create an instance: `const entity3 = client.entity3`
 
 #### Operations
 
@@ -336,13 +343,13 @@ Create an instance: `const entity3 = client.Entity3()`
 #### Example: Load
 
 ```ts
-const entity3 = await client.Entity3().load({ id: 'entity3_id' })
+const entity3 = await client.entity3.load({ id: 'entity3_id' })
 ```
 
 
 ### Info
 
-Create an instance: `const info = client.Info()`
+Create an instance: `const info = client.info`
 
 #### Operations
 
@@ -361,7 +368,7 @@ Create an instance: `const info = client.Info()`
 #### Example: List
 
 ```ts
-const infos = await client.Info().list()
+const infos = await client.info.list()
 ```
 
 
@@ -436,11 +443,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$entity1 = $client->entity1();
+$entity1->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $entity1->dataGet() now returns the loaded entity1 data
+// $entity1->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

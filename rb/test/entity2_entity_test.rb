@@ -36,8 +36,7 @@ class Entity2EntityTest < Minitest::Test
     entity2_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.entity2"), "entity2_ref01"))
 
-    entity2_ref01_data_result, err = entity2_ref01_ent.create(entity2_ref01_data, nil)
-    assert_nil err
+    entity2_ref01_data_result = entity2_ref01_ent.create(entity2_ref01_data, nil)
     entity2_ref01_data = Helpers.to_map(entity2_ref01_data_result)
     assert !entity2_ref01_data.nil?
 
@@ -77,7 +76,6 @@ def entity2_basic_setup(extra)
     "IPGEOLOCATIONAPI__TEST_ENTITY__ENTID" => idmap,
     "IPGEOLOCATIONAPI__TEST_LIVE" => "FALSE",
     "IPGEOLOCATIONAPI__TEST_EXPLAIN" => "FALSE",
-    "IPGEOLOCATIONAPI__APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -89,7 +87,6 @@ def entity2_basic_setup(extra)
   if env["IPGEOLOCATIONAPI__TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["IPGEOLOCATIONAPI__APIKEY"],
       },
       extra || {},
     ])

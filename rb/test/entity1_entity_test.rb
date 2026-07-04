@@ -42,8 +42,7 @@ class Entity1EntityTest < Minitest::Test
     # LOAD
     entity1_ref01_ent = client.Entity1(nil)
     entity1_ref01_match_dt0 = {}
-    entity1_ref01_data_dt0_loaded, err = entity1_ref01_ent.load(entity1_ref01_match_dt0, nil)
-    assert_nil err
+    entity1_ref01_data_dt0_loaded = entity1_ref01_ent.load(entity1_ref01_match_dt0, nil)
     assert !entity1_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def entity1_basic_setup(extra)
     "IPGEOLOCATIONAPI__TEST_ENTITY__ENTID" => idmap,
     "IPGEOLOCATIONAPI__TEST_LIVE" => "FALSE",
     "IPGEOLOCATIONAPI__TEST_EXPLAIN" => "FALSE",
-    "IPGEOLOCATIONAPI__APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def entity1_basic_setup(extra)
   if env["IPGEOLOCATIONAPI__TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["IPGEOLOCATIONAPI__APIKEY"],
       },
       extra || {},
     ])

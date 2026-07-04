@@ -86,7 +86,6 @@ function entity2_basic_setup(extra)
     ["IPGEOLOCATIONAPI__TEST_ENTITY__ENTID"] = idmap,
     ["IPGEOLOCATIONAPI__TEST_LIVE"] = "FALSE",
     ["IPGEOLOCATIONAPI__TEST_EXPLAIN"] = "FALSE",
-    ["IPGEOLOCATIONAPI__APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -98,7 +97,6 @@ function entity2_basic_setup(extra)
   if env["IPGEOLOCATIONAPI__TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["IPGEOLOCATIONAPI__APIKEY"],
       },
       extra or {},
     })

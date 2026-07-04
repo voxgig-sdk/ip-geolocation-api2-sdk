@@ -44,9 +44,7 @@ class TestEntity2Entity:
         entity2_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.entity2"), "entity2_ref01"))
 
-        entity2_ref01_data_result, err = entity2_ref01_ent.create(entity2_ref01_data, None)
-        assert err is None
-        entity2_ref01_data = helpers.to_map(entity2_ref01_data_result)
+        entity2_ref01_data = helpers.to_map(entity2_ref01_ent.create(entity2_ref01_data, None))
         assert entity2_ref01_data is not None
 
 
@@ -87,7 +85,6 @@ def _entity2_basic_setup(extra):
         "IPGEOLOCATIONAPI__TEST_ENTITY__ENTID": idmap,
         "IPGEOLOCATIONAPI__TEST_LIVE": "FALSE",
         "IPGEOLOCATIONAPI__TEST_EXPLAIN": "FALSE",
-        "IPGEOLOCATIONAPI__APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -98,7 +95,6 @@ def _entity2_basic_setup(extra):
     if env.get("IPGEOLOCATIONAPI__TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("IPGEOLOCATIONAPI__APIKEY"),
             },
             extra or {},
         ])

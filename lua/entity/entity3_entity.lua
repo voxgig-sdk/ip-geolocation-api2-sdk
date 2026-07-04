@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch Entity3LoadMatch
+---@param ctrl? table
+---@return Entity3
+---@return string? err
 function Entity3Entity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

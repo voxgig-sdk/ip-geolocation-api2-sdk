@@ -5,6 +5,8 @@ import { Entity2Entity } from './entity/Entity2Entity'
 import { Entity3Entity } from './entity/Entity3Entity'
 import { InfoEntity } from './entity/InfoEntity'
 
+export type * from './IpGeolocationApi2Types'
+
 
 import { inspect } from 'node:util'
 
@@ -205,24 +207,56 @@ class IpGeolocationApi2SDK {
 
 
 
+  _entity1?: Entity1Entity
+
+  // Idiomatic facade: `client.entity1.list()` / `client.entity1.load({ id })`.
+  get entity1(): Entity1Entity {
+    return (this._entity1 ??= new Entity1Entity(this, undefined))
+  }
+
+  /** @deprecated Use `client.entity1` instead. */
   Entity1(data?: any) {
     const self = this
     return new Entity1Entity(self,data)
   }
 
 
+  _entity2?: Entity2Entity
+
+  // Idiomatic facade: `client.entity2.list()` / `client.entity2.load({ id })`.
+  get entity2(): Entity2Entity {
+    return (this._entity2 ??= new Entity2Entity(this, undefined))
+  }
+
+  /** @deprecated Use `client.entity2` instead. */
   Entity2(data?: any) {
     const self = this
     return new Entity2Entity(self,data)
   }
 
 
+  _entity3?: Entity3Entity
+
+  // Idiomatic facade: `client.entity3.list()` / `client.entity3.load({ id })`.
+  get entity3(): Entity3Entity {
+    return (this._entity3 ??= new Entity3Entity(this, undefined))
+  }
+
+  /** @deprecated Use `client.entity3` instead. */
   Entity3(data?: any) {
     const self = this
     return new Entity3Entity(self,data)
   }
 
 
+  _info?: InfoEntity
+
+  // Idiomatic facade: `client.info.list()` / `client.info.load({ id })`.
+  get info(): InfoEntity {
+    return (this._info ??= new InfoEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.info` instead. */
   Info(data?: any) {
     const self = this
     return new InfoEntity(self,data)

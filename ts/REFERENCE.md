@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -146,7 +145,7 @@ Alias for `IpGeolocationApi2SDK.test()`.
 ## Entity1Entity
 
 ```ts
-const entity1 = client.Entity1()
+const entity1 = client.entity1
 ```
 
 ### Fields
@@ -169,7 +168,7 @@ const entity1 = client.Entity1()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Entity1().load({ id: 'entity1_id' })
+const result = await client.entity1.load({ id: 'entity1_id' })
 ```
 
 ### Common Methods
@@ -203,7 +202,7 @@ Return a copy of the entity options.
 ## Entity2Entity
 
 ```ts
-const entity2 = client.Entity2()
+const entity2 = client.entity2
 ```
 
 ### Operations
@@ -213,7 +212,7 @@ const entity2 = client.Entity2()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.Entity2().create({
+const result = await client.entity2.create({
 })
 ```
 
@@ -248,7 +247,7 @@ Return a copy of the entity options.
 ## Entity3Entity
 
 ```ts
-const entity3 = client.Entity3()
+const entity3 = client.entity3
 ```
 
 ### Fields
@@ -271,7 +270,7 @@ const entity3 = client.Entity3()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Entity3().load({ id: 'entity3_id' })
+const result = await client.entity3.load({ id: 'entity3_id' })
 ```
 
 ### Common Methods
@@ -305,7 +304,7 @@ Return a copy of the entity options.
 ## InfoEntity
 
 ```ts
-const info = client.Info()
+const info = client.info
 ```
 
 ### Fields
@@ -323,7 +322,7 @@ const info = client.Info()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Info().list()
+const results = await client.info.list()
 ```
 
 ### Common Methods

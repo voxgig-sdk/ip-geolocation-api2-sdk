@@ -19,7 +19,7 @@ class InfoDirectTest < Minitest::Test
     client = setup[:client]
 
 
-    result, err = client.direct({
+    result = client.direct({
       "path" => "info",
       "method" => "GET",
       "params" => {},
@@ -28,8 +28,8 @@ class InfoDirectTest < Minitest::Test
       # Live mode is lenient: synthetic IDs frequently 4xx and the list-
       # response shape varies wildly across public APIs. Skip rather than
       # fail when the call doesn't return a usable list.
-      if !err.nil?
-        skip("list call failed (likely synthetic IDs against live API): #{err}")
+      if !result["err"].nil?
+        skip("list call failed (likely synthetic IDs against live API): #{result["err"]}")
         return
       end
       unless result["ok"]
@@ -42,7 +42,7 @@ class InfoDirectTest < Minitest::Test
         return
       end
     else
-      assert_nil err
+      assert_nil result["err"]
       assert result["ok"]
       assert_equal 200, Helpers.to_int(result["status"])
       assert result["data"].is_a?(Array)
@@ -62,14 +62,12 @@ def info_direct_setup(mockres)
   env = Runner.env_override({
     "IPGEOLOCATIONAPI__TEST_INFO_ENTID" => {},
     "IPGEOLOCATIONAPI__TEST_LIVE" => "FALSE",
-    "IPGEOLOCATIONAPI__APIKEY" => "NONE",
   })
 
   live = env["IPGEOLOCATIONAPI__TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["IPGEOLOCATIONAPI__APIKEY"],
     }
     client = IpGeolocationApi2SDK.new(merged_opts)
     return {

@@ -45,6 +45,7 @@ class Entity3Entity
     end
   end
 
+  # @return [Entity3, Hash] the current Entity3 data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class Entity3Entity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Entity3 fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Entity3.
+  #
+  # @param reqmatch [Entity3LoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Entity3, Hash] the loaded Entity3; raises IpGeolocationApi2Error on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

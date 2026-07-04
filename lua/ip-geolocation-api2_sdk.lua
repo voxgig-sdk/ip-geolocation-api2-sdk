@@ -244,24 +244,76 @@ end
 
 
 
+-- Idiomatic facade: client:entity1():list() / client:entity1():load({ id = ... })
+function IpGeolocationApi2SDK:entity1(data)
+  local EntityMod = require("entity.entity1_entity")
+  if data == nil then
+    if self._entity1 == nil then
+      self._entity1 = EntityMod.new(self, nil)
+    end
+    return self._entity1
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:entity1() instead.
 function IpGeolocationApi2SDK:Entity1(data)
   local EntityMod = require("entity.entity1_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:entity2():list() / client:entity2():load({ id = ... })
+function IpGeolocationApi2SDK:entity2(data)
+  local EntityMod = require("entity.entity2_entity")
+  if data == nil then
+    if self._entity2 == nil then
+      self._entity2 = EntityMod.new(self, nil)
+    end
+    return self._entity2
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:entity2() instead.
 function IpGeolocationApi2SDK:Entity2(data)
   local EntityMod = require("entity.entity2_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:entity3():list() / client:entity3():load({ id = ... })
+function IpGeolocationApi2SDK:entity3(data)
+  local EntityMod = require("entity.entity3_entity")
+  if data == nil then
+    if self._entity3 == nil then
+      self._entity3 = EntityMod.new(self, nil)
+    end
+    return self._entity3
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:entity3() instead.
 function IpGeolocationApi2SDK:Entity3(data)
   local EntityMod = require("entity.entity3_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:info():list() / client:info():load({ id = ... })
+function IpGeolocationApi2SDK:info(data)
+  local EntityMod = require("entity.info_entity")
+  if data == nil then
+    if self._info == nil then
+      self._info = EntityMod.new(self, nil)
+    end
+    return self._info
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:info() instead.
 function IpGeolocationApi2SDK:Info(data)
   local EntityMod = require("entity.info_entity")
   return EntityMod.new(self, data)

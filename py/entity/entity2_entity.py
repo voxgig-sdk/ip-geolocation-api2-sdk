@@ -1,7 +1,13 @@
 # IpGeolocationApi2 SDK Entity2 entity
 
+from __future__ import annotations
+
 from utility.voxgig_struct import voxgig_struct as vs
 from core import helpers
+from ipgeolocationapi2_types import (
+    Entity2,
+    Entity2CreateData,
+)
 
 
 class Entity2Entity:
@@ -44,7 +50,7 @@ class Entity2Entity:
             self._data = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetData")
 
-    def data_get(self):
+    def data_get(self) -> Entity2:
         self._utility.feature_hook(self._entctx, "GetData")
         return vs.clone(self._data)
 
@@ -53,7 +59,7 @@ class Entity2Entity:
             self._match = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetMatch")
 
-    def match_get(self):
+    def match_get(self) -> Entity2:
         self._utility.feature_hook(self._entctx, "GetMatch")
         return vs.clone(self._match)
 
@@ -62,7 +68,7 @@ class Entity2Entity:
     
 
     
-    def create(self, reqdata, ctrl=None):
+    def create(self, reqdata: Entity2CreateData, ctrl=None) -> Entity2:
         utility = self._utility
         ctx = utility.make_context({
             "opname": "create",

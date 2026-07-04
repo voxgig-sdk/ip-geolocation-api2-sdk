@@ -144,16 +144,23 @@ class IpGeolocationApi2SDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class IpGeolocationApi2SDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,30 +212,74 @@ class IpGeolocationApi2SDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def entity1(self):
+        """Idiomatic facade: client.entity1.list() / client.entity1.load({"id": ...})."""
+        from entity.entity1_entity import Entity1Entity
+        cached = getattr(self, "_entity1", None)
+        if cached is None:
+            cached = Entity1Entity(self, None)
+            self._entity1 = cached
+        return cached
 
     def Entity1(self, data=None):
+        # Deprecated: use client.entity1 instead.
         from entity.entity1_entity import Entity1Entity
         return Entity1Entity(self, data)
 
 
+    @property
+    def entity2(self):
+        """Idiomatic facade: client.entity2.list() / client.entity2.load({"id": ...})."""
+        from entity.entity2_entity import Entity2Entity
+        cached = getattr(self, "_entity2", None)
+        if cached is None:
+            cached = Entity2Entity(self, None)
+            self._entity2 = cached
+        return cached
+
     def Entity2(self, data=None):
+        # Deprecated: use client.entity2 instead.
         from entity.entity2_entity import Entity2Entity
         return Entity2Entity(self, data)
 
 
+    @property
+    def entity3(self):
+        """Idiomatic facade: client.entity3.list() / client.entity3.load({"id": ...})."""
+        from entity.entity3_entity import Entity3Entity
+        cached = getattr(self, "_entity3", None)
+        if cached is None:
+            cached = Entity3Entity(self, None)
+            self._entity3 = cached
+        return cached
+
     def Entity3(self, data=None):
+        # Deprecated: use client.entity3 instead.
         from entity.entity3_entity import Entity3Entity
         return Entity3Entity(self, data)
 
 
+    @property
+    def info(self):
+        """Idiomatic facade: client.info.list() / client.info.load({"id": ...})."""
+        from entity.info_entity import InfoEntity
+        cached = getattr(self, "_info", None)
+        if cached is None:
+            cached = InfoEntity(self, None)
+            self._info = cached
+        return cached
+
     def Info(self, data=None):
+        # Deprecated: use client.info instead.
         from entity.info_entity import InfoEntity
         return InfoEntity(self, data)
 

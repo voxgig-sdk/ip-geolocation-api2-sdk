@@ -15,9 +15,6 @@ module IpGeolocationApi2Config
       },
       "options" => {
         "base" => "https://api.country.is",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -253,6 +250,7 @@ module IpGeolocationApi2Config
                         "orig" => "ip",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [

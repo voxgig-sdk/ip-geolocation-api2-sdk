@@ -43,8 +43,7 @@ class Entity2EntityTest extends TestCase
         $entity2_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.entity2"), "entity2_ref01"));
 
-        [$entity2_ref01_data_result, $err] = $entity2_ref01_ent->create($entity2_ref01_data, null);
-        $this->assertNull($err);
+        $entity2_ref01_data_result = $entity2_ref01_ent->create($entity2_ref01_data, null);
         $entity2_ref01_data = Helpers::to_map($entity2_ref01_data_result);
         $this->assertNotNull($entity2_ref01_data);
 
@@ -80,7 +79,6 @@ function entity2_basic_setup($extra)
         "IPGEOLOCATIONAPI__TEST_ENTITY__ENTID" => $idmap,
         "IPGEOLOCATIONAPI__TEST_LIVE" => "FALSE",
         "IPGEOLOCATIONAPI__TEST_EXPLAIN" => "FALSE",
-        "IPGEOLOCATIONAPI__APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -92,7 +90,6 @@ function entity2_basic_setup($extra)
     if ($env["IPGEOLOCATIONAPI__TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["IPGEOLOCATIONAPI__APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -9,12 +9,9 @@ The Lua SDK for the IpGeolocationApi2 API — an entity-oriented client using Lu
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-ip-geolocation-api2
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/ip-geolocation-api2-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("ip-geolocation-api2_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("IP-GEOLOCATION-API2_APIKEY"),
-})
+local client = sdk.new()
 ```
 
-### 3. Load a entity1
+### 3. Load an entity1
 
 ```lua
-local result, err = client:Entity1():load({ id = "example_id" })
+local result, err = client:entity1():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -87,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:IpGeolocationApi2():load({ id = "test01" })
+local result, err = client:entity1():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -120,8 +115,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-IP-GEOLOCATION-API2_TEST_LIVE=TRUE
-IP-GEOLOCATION-API2_APIKEY=<your-key>
+IP_GEOLOCATION_API2_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -144,7 +138,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -269,7 +262,7 @@ API path: `/info`
 
 ### Entity1
 
-Create an instance: `const entity1 = client.Entity1()`
+Create an instance: `const entity1 = client.entity1`
 
 #### Operations
 
@@ -293,13 +286,13 @@ Create an instance: `const entity1 = client.Entity1()`
 #### Example: Load
 
 ```ts
-const entity1 = await client.Entity1().load({ id: 'entity1_id' })
+const entity1 = await client.entity1.load({ id: 'entity1_id' })
 ```
 
 
 ### Entity2
 
-Create an instance: `const entity2 = client.Entity2()`
+Create an instance: `const entity2 = client.entity2`
 
 #### Operations
 
@@ -310,14 +303,14 @@ Create an instance: `const entity2 = client.Entity2()`
 #### Example: Create
 
 ```ts
-const entity2 = await client.Entity2().create({
+const entity2 = await client.entity2.create({
 })
 ```
 
 
 ### Entity3
 
-Create an instance: `const entity3 = client.Entity3()`
+Create an instance: `const entity3 = client.entity3`
 
 #### Operations
 
@@ -341,13 +334,13 @@ Create an instance: `const entity3 = client.Entity3()`
 #### Example: Load
 
 ```ts
-const entity3 = await client.Entity3().load({ id: 'entity3_id' })
+const entity3 = await client.entity3.load({ id: 'entity3_id' })
 ```
 
 
 ### Info
 
-Create an instance: `const info = client.Info()`
+Create an instance: `const info = client.info`
 
 #### Operations
 
@@ -366,7 +359,7 @@ Create an instance: `const info = client.Info()`
 #### Example: List
 
 ```ts
-const infos = await client.Info().list()
+const infos = await client.info.list()
 ```
 
 
@@ -441,11 +434,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local entity1 = client:entity1()
+entity1:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- entity1:data_get() now returns the loaded entity1 data
+-- entity1:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

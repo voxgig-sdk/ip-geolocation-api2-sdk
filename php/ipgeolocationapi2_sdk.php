@@ -103,7 +103,7 @@ class IpGeolocationApi2SDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class IpGeolocationApi2SDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class IpGeolocationApi2SDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,45 +216,89 @@ class IpGeolocationApi2SDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function Entity1($data = null)
+    private $_entity1 = null;
+
+    // Idiomatic facade: $client->entity1()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Entity1() (PHP method
+    // names are case-insensitive).
+    public function entity1($data = null)
     {
         require_once __DIR__ . '/entity/entity1_entity.php';
+        if ($data === null) {
+            if ($this->_entity1 === null) {
+                $this->_entity1 = new Entity1Entity($this, null);
+            }
+            return $this->_entity1;
+        }
         return new Entity1Entity($this, $data);
     }
 
 
-    public function Entity2($data = null)
+    private $_entity2 = null;
+
+    // Idiomatic facade: $client->entity2()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Entity2() (PHP method
+    // names are case-insensitive).
+    public function entity2($data = null)
     {
         require_once __DIR__ . '/entity/entity2_entity.php';
+        if ($data === null) {
+            if ($this->_entity2 === null) {
+                $this->_entity2 = new Entity2Entity($this, null);
+            }
+            return $this->_entity2;
+        }
         return new Entity2Entity($this, $data);
     }
 
 
-    public function Entity3($data = null)
+    private $_entity3 = null;
+
+    // Idiomatic facade: $client->entity3()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Entity3() (PHP method
+    // names are case-insensitive).
+    public function entity3($data = null)
     {
         require_once __DIR__ . '/entity/entity3_entity.php';
+        if ($data === null) {
+            if ($this->_entity3 === null) {
+                $this->_entity3 = new Entity3Entity($this, null);
+            }
+            return $this->_entity3;
+        }
         return new Entity3Entity($this, $data);
     }
 
 
-    public function Info($data = null)
+    private $_info = null;
+
+    // Idiomatic facade: $client->info()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Info() (PHP method
+    // names are case-insensitive).
+    public function info($data = null)
     {
         require_once __DIR__ . '/entity/info_entity.php';
+        if ($data === null) {
+            if ($this->_info === null) {
+                $this->_info = new InfoEntity($this, null);
+            }
+            return $this->_info;
+        }
         return new InfoEntity($this, $data);
     }
 

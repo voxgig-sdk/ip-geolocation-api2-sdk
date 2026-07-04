@@ -9,9 +9,12 @@ The TypeScript SDK for the IpGeolocationApi2 API — a type-safe, entity-oriente
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/ip-geolocation-api2
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/ip-geolocation-api2-sdk/releases](https://github.com/voxgig-sdk/ip-geolocation-api2-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { IpGeolocationApi2SDK } from 'ip-geolocation-api2'
+import { IpGeolocationApi2SDK } from '@voxgig-sdk/ip-geolocation-api2'
 
-const client = new IpGeolocationApi2SDK({
-  apikey: process.env.IP-GEOLOCATION-API2_APIKEY,
-})
+const client = new IpGeolocationApi2SDK()
 ```
 
-### 3. Load a entity1
+### 3. Load an entity1
 
 ```ts
-const result = await client.Entity1().load({ id: 'example_id' })
+const result = await client.entity1.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +80,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = IpGeolocationApi2SDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.entity1.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -87,7 +88,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new IpGeolocationApi2SDK({ apikey: '...' })
+const client = new IpGeolocationApi2SDK()
 const testClient = client.tester()
 ```
 
@@ -96,7 +97,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.entity1
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -123,7 +124,6 @@ const logger = {
 }
 
 const client = new IpGeolocationApi2SDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -133,8 +133,7 @@ const client = new IpGeolocationApi2SDK({
 Create a `.env.local` file at the project root:
 
 ```
-IP-GEOLOCATION-API2_TEST_LIVE=TRUE
-IP-GEOLOCATION-API2_APIKEY=<your-key>
+IP_GEOLOCATION_API2_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -152,7 +151,6 @@ cd ts && npm test
 
 ```ts
 new IpGeolocationApi2SDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -163,7 +161,6 @@ new IpGeolocationApi2SDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -314,7 +311,7 @@ API path: `/info`
 
 ### Entity1
 
-Create an instance: `const entity1 = client.Entity1()`
+Create an instance: `const entity1 = client.entity1`
 
 #### Operations
 
@@ -338,13 +335,13 @@ Create an instance: `const entity1 = client.Entity1()`
 #### Example: Load
 
 ```ts
-const entity1 = await client.Entity1().load({ id: 'entity1_id' })
+const entity1 = await client.entity1.load({ id: 'entity1_id' })
 ```
 
 
 ### Entity2
 
-Create an instance: `const entity2 = client.Entity2()`
+Create an instance: `const entity2 = client.entity2`
 
 #### Operations
 
@@ -355,14 +352,14 @@ Create an instance: `const entity2 = client.Entity2()`
 #### Example: Create
 
 ```ts
-const entity2 = await client.Entity2().create({
+const entity2 = await client.entity2.create({
 })
 ```
 
 
 ### Entity3
 
-Create an instance: `const entity3 = client.Entity3()`
+Create an instance: `const entity3 = client.entity3`
 
 #### Operations
 
@@ -386,13 +383,13 @@ Create an instance: `const entity3 = client.Entity3()`
 #### Example: Load
 
 ```ts
-const entity3 = await client.Entity3().load({ id: 'entity3_id' })
+const entity3 = await client.entity3.load({ id: 'entity3_id' })
 ```
 
 
 ### Info
 
-Create an instance: `const info = client.Info()`
+Create an instance: `const info = client.info`
 
 #### Operations
 
@@ -411,7 +408,7 @@ Create an instance: `const info = client.Info()`
 #### Example: List
 
 ```ts
-const infos = await client.Info().list()
+const infos = await client.info.list()
 ```
 
 
@@ -472,7 +469,7 @@ ip-geolocation-api2/
 Import the SDK from the package root:
 
 ```ts
-import { IpGeolocationApi2SDK } from 'ip-geolocation-api2'
+import { IpGeolocationApi2SDK } from '@voxgig-sdk/ip-geolocation-api2'
 ```
 
 ### Entity state
@@ -482,11 +479,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const entity1 = client.entity1
+await entity1.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// entity1.data() now returns the loaded entity1 data
+// entity1.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

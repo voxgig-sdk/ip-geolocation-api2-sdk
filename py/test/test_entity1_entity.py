@@ -49,8 +49,7 @@ class TestEntity1Entity:
         # LOAD
         entity1_ref01_ent = client.Entity1(None)
         entity1_ref01_match_dt0 = {}
-        entity1_ref01_data_dt0_loaded, err = entity1_ref01_ent.load(entity1_ref01_match_dt0, None)
-        assert err is None
+        entity1_ref01_data_dt0_loaded = entity1_ref01_ent.load(entity1_ref01_match_dt0, None)
         assert entity1_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _entity1_basic_setup(extra):
         "IPGEOLOCATIONAPI__TEST_ENTITY__ENTID": idmap,
         "IPGEOLOCATIONAPI__TEST_LIVE": "FALSE",
         "IPGEOLOCATIONAPI__TEST_EXPLAIN": "FALSE",
-        "IPGEOLOCATIONAPI__APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _entity1_basic_setup(extra):
     if env.get("IPGEOLOCATIONAPI__TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("IPGEOLOCATIONAPI__APIKEY"),
             },
             extra or {},
         ])

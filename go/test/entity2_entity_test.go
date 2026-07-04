@@ -110,7 +110,6 @@ func entity2BasicSetup(extra map[string]any) *entityTestSetup {
 		"IPGEOLOCATIONAPI__TEST_ENTITY__ENTID": idmap,
 		"IPGEOLOCATIONAPI__TEST_LIVE":      "FALSE",
 		"IPGEOLOCATIONAPI__TEST_EXPLAIN":   "FALSE",
-		"IPGEOLOCATIONAPI__APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["IPGEOLOCATIONAPI__TEST_ENTITY__ENTID"])
@@ -121,7 +120,6 @@ func entity2BasicSetup(extra map[string]any) *entityTestSetup {
 	if env["IPGEOLOCATIONAPI__TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["IPGEOLOCATIONAPI__APIKEY"],
 			},
 			extra,
 		})
