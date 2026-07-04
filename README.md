@@ -26,9 +26,9 @@ import { IpGeolocationApi2SDK } from '@voxgig-sdk/ip-geolocation-api2'
 
 const client = new IpGeolocationApi2SDK()
 
-// Load entity1 data
-const entity1 = await client.entity1.load({})
-console.log(entity1.data)
+// Load entity1 data (returns a Entity1)
+const entity1 = await client.Entity1().load()
+console.log(entity1)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -87,8 +87,8 @@ from ipgeolocationapi2_sdk import IpGeolocationApi2SDK
 client = IpGeolocationApi2SDK()
 
 
-# Load a specific entity1
-entity1 = client.entity1.load({"id": "example_id"})
+# Load a specific entity1 (returns the record, raises on error)
+entity1 = client.Entity1().load({"id": "example_id"})
 print(entity1)
 ```
 
@@ -101,8 +101,8 @@ require_once 'ipgeolocationapi2_sdk.php';
 $client = new IpGeolocationApi2SDK();
 
 
-// Load a specific entity1
-$entity1 = $client->entity1()->load(["id" => "example_id"]);
+// Load a specific entity1 (returns the bare record; throws on error)
+$entity1 = $client->Entity1()->load(["id" => "example_id"]);
 print_r($entity1);
 ```
 
@@ -126,8 +126,8 @@ require_relative "IpGeolocationApi2_sdk"
 client = IpGeolocationApi2SDK.new
 
 
-# Load a specific entity1
-entity1 = client.entity1.load({ "id" => "example_id" })
+# Load a specific entity1 (returns the bare record; raises on error)
+entity1 = client.Entity1.load({ "id" => "example_id" })
 puts entity1
 ```
 
@@ -140,7 +140,7 @@ local client = sdk.new()
 
 
 -- Load a specific entity1
-local entity1, err = client:entity1():load({ id = "example_id" })
+local entity1, err = client:Entity1():load({ id = "example_id" })
 print(entity1)
 ```
 
@@ -153,22 +153,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = IpGeolocationApi2SDK.test()
-const result = await client.entity1.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const entity1 = await client.Entity1().load({ id: 'test01' })
+// entity1 is a bare Entity1 populated with mock data
+console.log(entity1)
 ```
 
 ### Python
 
 ```python
 client = IpGeolocationApi2SDK.test()
-result = client.entity1.load({"id": "test01"})
+entity1 = client.Entity1().load({"id": "test01"})
+print(entity1)
 ```
 
 ### PHP
 
 ```php
-$client = IpGeolocationApi2SDK::test();
-$result = $client->entity1()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = IpGeolocationApi2SDK::test([
+    "entity" => ["entity1" => ["test01" => ["id" => "test01"]]],
+]);
+$entity1 = $client->Entity1()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -183,15 +188,18 @@ result, err := client.Entity1(nil).Load(
 ### Ruby
 
 ```ruby
-client = IpGeolocationApi2SDK.test
-result = client.entity1.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = IpGeolocationApi2SDK.test({
+  "entity" => { "entity1" => { "test01" => { "id" => "test01" } } },
+})
+entity1 = client.Entity1.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:entity1():load({ id = "test01" })
+local result, err = client:Entity1():load({ id = "test01" })
 ```
 
 ## How it works
@@ -239,6 +247,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

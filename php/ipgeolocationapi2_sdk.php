@@ -233,10 +233,10 @@ class IpGeolocationApi2SDK
 
     private $_entity1 = null;
 
-    // Idiomatic facade: $client->entity1()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Entity1() (PHP method
-    // names are case-insensitive).
-    public function entity1($data = null)
+    // Canonical facade: $client->Entity1()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->entity1()
+    // resolves here too.
+    public function Entity1($data = null)
     {
         require_once __DIR__ . '/entity/entity1_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class IpGeolocationApi2SDK
 
     private $_entity2 = null;
 
-    // Idiomatic facade: $client->entity2()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Entity2() (PHP method
-    // names are case-insensitive).
-    public function entity2($data = null)
+    // Canonical facade: $client->Entity2()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->entity2()
+    // resolves here too.
+    public function Entity2($data = null)
     {
         require_once __DIR__ . '/entity/entity2_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class IpGeolocationApi2SDK
 
     private $_entity3 = null;
 
-    // Idiomatic facade: $client->entity3()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Entity3() (PHP method
-    // names are case-insensitive).
-    public function entity3($data = null)
+    // Canonical facade: $client->Entity3()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->entity3()
+    // resolves here too.
+    public function Entity3($data = null)
     {
         require_once __DIR__ . '/entity/entity3_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class IpGeolocationApi2SDK
 
     private $_info = null;
 
-    // Idiomatic facade: $client->info()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Info() (PHP method
-    // names are case-insensitive).
-    public function info($data = null)
+    // Canonical facade: $client->Info()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->info()
+    // resolves here too.
+    public function Info($data = null)
     {
         require_once __DIR__ . '/entity/info_entity.php';
         if ($data === null) {

@@ -92,7 +92,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## Entity1Entity
 
 ```python
-entity1 = client.entity1
+entity1 = client.Entity1()
 ```
 
 ### Fields
@@ -115,7 +115,7 @@ entity1 = client.entity1
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.entity1.load({"id": "entity1_id"})
+result = client.Entity1().load({"id": "entity1_id"})
 ```
 
 ### Common Methods
@@ -150,7 +150,7 @@ Return the entity name.
 ## Entity2Entity
 
 ```python
-entity2 = client.entity2
+entity2 = client.Entity2()
 ```
 
 ### Operations
@@ -160,7 +160,7 @@ entity2 = client.entity2
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.entity2.create({
+result = client.Entity2().create({
 })
 ```
 
@@ -196,7 +196,7 @@ Return the entity name.
 ## Entity3Entity
 
 ```python
-entity3 = client.entity3
+entity3 = client.Entity3()
 ```
 
 ### Fields
@@ -219,7 +219,7 @@ entity3 = client.entity3
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.entity3.load({"id": "entity3_id"})
+result = client.Entity3().load({"id": "entity3_id"})
 ```
 
 ### Common Methods
@@ -254,7 +254,7 @@ Return the entity name.
 ## InfoEntity
 
 ```python
-info = client.info
+info = client.Info()
 ```
 
 ### Fields
@@ -272,7 +272,9 @@ info = client.info
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.info.list({})
+results = client.Info().list({})
+for info in results:
+    print(info)
 ```
 
 ### Common Methods

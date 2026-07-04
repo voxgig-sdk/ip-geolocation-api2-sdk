@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:entity1():list() / client:entity1():load({ id = ... })
-function IpGeolocationApi2SDK:entity1(data)
+-- Idiomatic facade: client:Entity1():list() / client:Entity1():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpGeolocationApi2SDK:Entity1(data)
   local EntityMod = require("entity.entity1_entity")
   if data == nil then
     if self._entity1 == nil then
@@ -256,15 +257,10 @@ function IpGeolocationApi2SDK:entity1(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:entity1() instead.
-function IpGeolocationApi2SDK:Entity1(data)
-  local EntityMod = require("entity.entity1_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:entity2():list() / client:entity2():load({ id = ... })
-function IpGeolocationApi2SDK:entity2(data)
+-- Idiomatic facade: client:Entity2():list() / client:Entity2():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpGeolocationApi2SDK:Entity2(data)
   local EntityMod = require("entity.entity2_entity")
   if data == nil then
     if self._entity2 == nil then
@@ -275,15 +271,10 @@ function IpGeolocationApi2SDK:entity2(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:entity2() instead.
-function IpGeolocationApi2SDK:Entity2(data)
-  local EntityMod = require("entity.entity2_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:entity3():list() / client:entity3():load({ id = ... })
-function IpGeolocationApi2SDK:entity3(data)
+-- Idiomatic facade: client:Entity3():list() / client:Entity3():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpGeolocationApi2SDK:Entity3(data)
   local EntityMod = require("entity.entity3_entity")
   if data == nil then
     if self._entity3 == nil then
@@ -294,15 +285,10 @@ function IpGeolocationApi2SDK:entity3(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:entity3() instead.
-function IpGeolocationApi2SDK:Entity3(data)
-  local EntityMod = require("entity.entity3_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:info():list() / client:info():load({ id = ... })
-function IpGeolocationApi2SDK:info(data)
+-- Idiomatic facade: client:Info():list() / client:Info():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpGeolocationApi2SDK:Info(data)
   local EntityMod = require("entity.info_entity")
   if data == nil then
     if self._info == nil then
@@ -310,12 +296,6 @@ function IpGeolocationApi2SDK:info(data)
     end
     return self._info
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:info() instead.
-function IpGeolocationApi2SDK:Info(data)
-  local EntityMod = require("entity.info_entity")
   return EntityMod.new(self, data)
 end
 

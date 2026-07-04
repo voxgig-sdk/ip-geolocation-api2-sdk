@@ -98,7 +98,7 @@ same parameters as `direct()`. Raises on error.
 ## Entity1Entity
 
 ```ruby
-entity1 = client.entity1
+entity1 = client.Entity1
 ```
 
 ### Fields
@@ -121,7 +121,7 @@ entity1 = client.entity1
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.entity1.load({ "id" => "entity1_id" })
+result = client.Entity1.load({ "id" => "entity1_id" })
 ```
 
 ### Common Methods
@@ -157,7 +157,7 @@ Return the entity name.
 ## Entity2Entity
 
 ```ruby
-entity2 = client.entity2
+entity2 = client.Entity2
 ```
 
 ### Operations
@@ -167,7 +167,7 @@ entity2 = client.entity2
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.entity2.create({
+result = client.Entity2.create({
 })
 ```
 
@@ -204,7 +204,7 @@ Return the entity name.
 ## Entity3Entity
 
 ```ruby
-entity3 = client.entity3
+entity3 = client.Entity3
 ```
 
 ### Fields
@@ -227,7 +227,7 @@ entity3 = client.entity3
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.entity3.load({ "id" => "entity3_id" })
+result = client.Entity3.load({ "id" => "entity3_id" })
 ```
 
 ### Common Methods
@@ -263,7 +263,7 @@ Return the entity name.
 ## InfoEntity
 
 ```ruby
-info = client.info
+info = client.Info
 ```
 
 ### Fields
@@ -281,7 +281,7 @@ info = client.info
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.info.list(nil)
+results = client.Info.list(nil)
 ```
 
 ### Common Methods

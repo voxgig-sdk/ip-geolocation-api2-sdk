@@ -208,52 +208,28 @@ class IpGeolocationApi2SDK
   end
 
 
-  # Idiomatic facade: client.entity1.list / client.entity1.load({ "id" => ... })
-  def entity1
-    require_relative 'entity/entity1_entity'
-    @entity1 ||= Entity1Entity.new(self, nil)
-  end
-
-  # Deprecated: use client.entity1 instead.
+  # Canonical facade: client.Entity1.list / client.Entity1.load({ "id" => ... })
   def Entity1(data = nil)
     require_relative 'entity/entity1_entity'
     Entity1Entity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.entity2.list / client.entity2.load({ "id" => ... })
-  def entity2
-    require_relative 'entity/entity2_entity'
-    @entity2 ||= Entity2Entity.new(self, nil)
-  end
-
-  # Deprecated: use client.entity2 instead.
+  # Canonical facade: client.Entity2.list / client.Entity2.load({ "id" => ... })
   def Entity2(data = nil)
     require_relative 'entity/entity2_entity'
     Entity2Entity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.entity3.list / client.entity3.load({ "id" => ... })
-  def entity3
-    require_relative 'entity/entity3_entity'
-    @entity3 ||= Entity3Entity.new(self, nil)
-  end
-
-  # Deprecated: use client.entity3 instead.
+  # Canonical facade: client.Entity3.list / client.Entity3.load({ "id" => ... })
   def Entity3(data = nil)
     require_relative 'entity/entity3_entity'
     Entity3Entity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.info.list / client.info.load({ "id" => ... })
-  def info
-    require_relative 'entity/info_entity'
-    @info ||= InfoEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.info instead.
+  # Canonical facade: client.Info.list / client.Info.load({ "id" => ... })
   def Info(data = nil)
     require_relative 'entity/info_entity'
     InfoEntity.new(self, data)

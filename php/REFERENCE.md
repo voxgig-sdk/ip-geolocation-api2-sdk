@@ -97,7 +97,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## Entity1Entity
 
 ```php
-$entity1 = $client->entity1();
+$entity1 = $client->Entity1();
 ```
 
 ### Fields
@@ -120,7 +120,7 @@ $entity1 = $client->entity1();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->entity1()->load(["id" => "entity1_id"]);
+$result = $client->Entity1()->load(["id" => "entity1_id"]);
 ```
 
 ### Common Methods
@@ -156,7 +156,7 @@ Return the entity name.
 ## Entity2Entity
 
 ```php
-$entity2 = $client->entity2();
+$entity2 = $client->Entity2();
 ```
 
 ### Operations
@@ -166,7 +166,7 @@ $entity2 = $client->entity2();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->entity2()->create([
+$result = $client->Entity2()->create([
 ]);
 ```
 
@@ -203,7 +203,7 @@ Return the entity name.
 ## Entity3Entity
 
 ```php
-$entity3 = $client->entity3();
+$entity3 = $client->Entity3();
 ```
 
 ### Fields
@@ -226,7 +226,7 @@ $entity3 = $client->entity3();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->entity3()->load(["id" => "entity3_id"]);
+$result = $client->Entity3()->load(["id" => "entity3_id"]);
 ```
 
 ### Common Methods
@@ -262,7 +262,7 @@ Return the entity name.
 ## InfoEntity
 
 ```php
-$info = $client->info();
+$info = $client->Info();
 ```
 
 ### Fields
@@ -280,7 +280,7 @@ $info = $client->info();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->info()->list([]);
+$results = $client->Info()->list([]);
 ```
 
 ### Common Methods

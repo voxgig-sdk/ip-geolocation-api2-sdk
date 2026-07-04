@@ -4,74 +4,76 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Entity1:
+class Entity1Required(TypedDict):
     country: str
     ip: str
-    asn: Optional[dict] = None
-    city: Optional[str] = None
-    continent: Optional[str] = None
-    location: Optional[dict] = None
-    postal: Optional[str] = None
-    subdivision: Optional[str] = None
 
 
-@dataclass
-class Entity1LoadMatch:
-    asn: Optional[dict] = None
-    city: Optional[str] = None
-    continent: Optional[str] = None
-    country: Optional[str] = None
-    ip: Optional[str] = None
-    location: Optional[dict] = None
-    postal: Optional[str] = None
-    subdivision: Optional[str] = None
+class Entity1(Entity1Required, total=False):
+    asn: dict
+    city: str
+    continent: str
+    location: dict
+    postal: str
+    subdivision: str
 
 
-@dataclass
-class Entity2:
+class Entity1LoadMatch(TypedDict, total=False):
+    asn: dict
+    city: str
+    continent: str
+    country: str
+    ip: str
+    location: dict
+    postal: str
+    subdivision: str
+
+
+class Entity2(TypedDict):
     pass
 
 
-@dataclass
-class Entity2CreateData:
+class Entity2CreateData(TypedDict):
     pass
 
 
-@dataclass
-class Entity3:
+class Entity3Required(TypedDict):
     country: str
     ip: str
-    asn: Optional[dict] = None
-    city: Optional[str] = None
-    continent: Optional[str] = None
-    location: Optional[dict] = None
-    postal: Optional[str] = None
-    subdivision: Optional[str] = None
 
 
-@dataclass
-class Entity3LoadMatch:
+class Entity3(Entity3Required, total=False):
+    asn: dict
+    city: str
+    continent: str
+    location: dict
+    postal: str
+    subdivision: str
+
+
+class Entity3LoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class Info:
-    data_source: Optional[list] = None
-    last_updated: Optional[str] = None
-    version: Optional[str] = None
+class Info(TypedDict, total=False):
+    data_source: list
+    last_updated: str
+    version: str
 
 
-@dataclass
-class InfoListMatch:
-    data_source: Optional[list] = None
-    last_updated: Optional[str] = None
-    version: Optional[str] = None
-
+class InfoListMatch(TypedDict, total=False):
+    data_source: list
+    last_updated: str
+    version: str

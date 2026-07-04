@@ -95,7 +95,7 @@ same parameters as `direct()`.
 ## Entity1Entity
 
 ```lua
-local entity1 = client:entity1(nil)
+local entity1 = client:Entity1(nil)
 ```
 
 ### Fields
@@ -118,7 +118,7 @@ local entity1 = client:entity1(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:entity1():load({ id = "entity1_id" })
+local result, err = client:Entity1():load({ id = "entity1_id" })
 ```
 
 ### Common Methods
@@ -154,7 +154,7 @@ Return the entity name.
 ## Entity2Entity
 
 ```lua
-local entity2 = client:entity2(nil)
+local entity2 = client:Entity2(nil)
 ```
 
 ### Operations
@@ -164,7 +164,7 @@ local entity2 = client:entity2(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:entity2():create({
+local result, err = client:Entity2():create({
 })
 ```
 
@@ -201,7 +201,7 @@ Return the entity name.
 ## Entity3Entity
 
 ```lua
-local entity3 = client:entity3(nil)
+local entity3 = client:Entity3(nil)
 ```
 
 ### Fields
@@ -224,7 +224,7 @@ local entity3 = client:entity3(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:entity3():load({ id = "entity3_id" })
+local result, err = client:Entity3():load({ id = "entity3_id" })
 ```
 
 ### Common Methods
@@ -260,7 +260,7 @@ Return the entity name.
 ## InfoEntity
 
 ```lua
-local info = client:info(nil)
+local info = client:Info(nil)
 ```
 
 ### Fields
@@ -278,7 +278,7 @@ local info = client:info(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:info():list()
+local results, err = client:Info():list()
 ```
 
 ### Common Methods

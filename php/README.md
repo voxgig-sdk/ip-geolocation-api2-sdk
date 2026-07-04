@@ -33,9 +33,10 @@ $client = new IpGeolocationApi2SDK();
 
 ```php
 try {
-    $result = $client->entity1()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Entity1 record (throws on error).
+    $entity1 = $client->Entity1()->load(["id" => "example_id"]);
+    print_r($entity1);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -81,13 +82,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = IpGeolocationApi2SDK::test();
+$client = IpGeolocationApi2SDK::test([
+    "entity" => ["entity1" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->entity1()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$entity1 = $client->Entity1()->load(["id" => "test01"]);
+print_r($entity1);
 ```
 
 ### Use a custom fetch function
@@ -166,10 +171,10 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Entity1` | `($data): Entity1Entity` | Create a Entity1 entity instance. |
-| `Entity2` | `($data): Entity2Entity` | Create a Entity2 entity instance. |
-| `Entity3` | `($data): Entity3Entity` | Create a Entity3 entity instance. |
-| `Info` | `($data): InfoEntity` | Create a Info entity instance. |
+| `Entity1` | `($data): Entity1Entity` | Create an Entity1 entity instance. |
+| `Entity2` | `($data): Entity2Entity` | Create an Entity2 entity instance. |
+| `Entity3` | `($data): Entity3Entity` | Create an Entity3 entity instance. |
+| `Info` | `($data): InfoEntity` | Create an Info entity instance. |
 
 ### Entity interface
 
@@ -271,7 +276,7 @@ API path: `/info`
 
 ### Entity1
 
-Create an instance: `const entity1 = client.entity1`
+Create an instance: `$entity1 = $client->Entity1();`
 
 #### Operations
 
@@ -294,14 +299,15 @@ Create an instance: `const entity1 = client.entity1`
 
 #### Example: Load
 
-```ts
-const entity1 = await client.entity1.load({ id: 'entity1_id' })
+```php
+// load() returns the bare Entity1 record (throws on error).
+$entity1 = $client->Entity1()->load(["id" => "entity1_id"]);
 ```
 
 
 ### Entity2
 
-Create an instance: `const entity2 = client.entity2`
+Create an instance: `$entity2 = $client->Entity2();`
 
 #### Operations
 
@@ -311,15 +317,15 @@ Create an instance: `const entity2 = client.entity2`
 
 #### Example: Create
 
-```ts
-const entity2 = await client.entity2.create({
-})
+```php
+$entity2 = $client->Entity2()->create([
+]);
 ```
 
 
 ### Entity3
 
-Create an instance: `const entity3 = client.entity3`
+Create an instance: `$entity3 = $client->Entity3();`
 
 #### Operations
 
@@ -342,14 +348,15 @@ Create an instance: `const entity3 = client.entity3`
 
 #### Example: Load
 
-```ts
-const entity3 = await client.entity3.load({ id: 'entity3_id' })
+```php
+// load() returns the bare Entity3 record (throws on error).
+$entity3 = $client->Entity3()->load(["id" => "entity3_id"]);
 ```
 
 
 ### Info
 
-Create an instance: `const info = client.info`
+Create an instance: `$info = $client->Info();`
 
 #### Operations
 
@@ -367,8 +374,9 @@ Create an instance: `const info = client.info`
 
 #### Example: List
 
-```ts
-const infos = await client.info.list()
+```php
+// list() returns an array of Info records (throws on error).
+$infos = $client->Info()->list();
 ```
 
 
@@ -443,7 +451,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$entity1 = $client->entity1();
+$entity1 = $client->Entity1();
 $entity1->load(["id" => "example_id"]);
 
 // $entity1->dataGet() now returns the loaded entity1 data

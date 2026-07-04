@@ -220,73 +220,33 @@ class IpGeolocationApi2SDK:
         }
 
 
-    @property
-    def entity1(self):
-        """Idiomatic facade: client.entity1.list() / client.entity1.load({"id": ...})."""
-        from entity.entity1_entity import Entity1Entity
-        cached = getattr(self, "_entity1", None)
-        if cached is None:
-            cached = Entity1Entity(self, None)
-            self._entity1 = cached
-        return cached
-
-    def Entity1(self, data=None):
-        # Deprecated: use client.entity1 instead.
+    def Entity1(self, data=None) -> "Entity1Entity":
+        """Entity factory: client.Entity1().list({}) / client.Entity1().load({"id": ...})."""
         from entity.entity1_entity import Entity1Entity
         return Entity1Entity(self, data)
 
 
-    @property
-    def entity2(self):
-        """Idiomatic facade: client.entity2.list() / client.entity2.load({"id": ...})."""
-        from entity.entity2_entity import Entity2Entity
-        cached = getattr(self, "_entity2", None)
-        if cached is None:
-            cached = Entity2Entity(self, None)
-            self._entity2 = cached
-        return cached
-
-    def Entity2(self, data=None):
-        # Deprecated: use client.entity2 instead.
+    def Entity2(self, data=None) -> "Entity2Entity":
+        """Entity factory: client.Entity2().list({}) / client.Entity2().load({"id": ...})."""
         from entity.entity2_entity import Entity2Entity
         return Entity2Entity(self, data)
 
 
-    @property
-    def entity3(self):
-        """Idiomatic facade: client.entity3.list() / client.entity3.load({"id": ...})."""
-        from entity.entity3_entity import Entity3Entity
-        cached = getattr(self, "_entity3", None)
-        if cached is None:
-            cached = Entity3Entity(self, None)
-            self._entity3 = cached
-        return cached
-
-    def Entity3(self, data=None):
-        # Deprecated: use client.entity3 instead.
+    def Entity3(self, data=None) -> "Entity3Entity":
+        """Entity factory: client.Entity3().list({}) / client.Entity3().load({"id": ...})."""
         from entity.entity3_entity import Entity3Entity
         return Entity3Entity(self, data)
 
 
-    @property
-    def info(self):
-        """Idiomatic facade: client.info.list() / client.info.load({"id": ...})."""
-        from entity.info_entity import InfoEntity
-        cached = getattr(self, "_info", None)
-        if cached is None:
-            cached = InfoEntity(self, None)
-            self._info = cached
-        return cached
-
-    def Info(self, data=None):
-        # Deprecated: use client.info instead.
+    def Info(self, data=None) -> "InfoEntity":
+        """Entity factory: client.Info().list({}) / client.Info().load({"id": ...})."""
         from entity.info_entity import InfoEntity
         return InfoEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "IpGeolocationApi2SDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -306,3 +266,12 @@ class IpGeolocationApi2SDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.entity1_entity import Entity1Entity
+    from entity.entity2_entity import Entity2Entity
+    from entity.entity3_entity import Entity3Entity
+    from entity.info_entity import InfoEntity
