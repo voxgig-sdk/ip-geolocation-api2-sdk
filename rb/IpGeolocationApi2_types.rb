@@ -45,7 +45,7 @@ Entity1 = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Entity1#load (any subset of Entity1 fields).
+# Request payload for Entity1#load.
 #
 # @!attribute [rw] asn
 #   @return [Hash, nil]
@@ -86,7 +86,7 @@ Entity1LoadMatch = Struct.new(
 class Entity2
 end
 
-# Match filter for Entity2#create (any subset of Entity2 fields).
+# Request payload for Entity2#create.
 class Entity2CreateData
 end
 
@@ -153,7 +153,7 @@ Info = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Info#list (any subset of Info fields).
+# Request payload for Info#list.
 #
 # @!attribute [rw] data_source
 #   @return [Array, nil]

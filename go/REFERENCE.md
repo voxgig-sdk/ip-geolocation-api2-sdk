@@ -109,14 +109,14 @@ entity1 := client.Entity1(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | No |  |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `location` | ``$OBJECT`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `subdivision` | ``$STRING`` | No |  |
+| `asn` | `map[string]any` | No |  |
+| `city` | `string` | No |  |
+| `continent` | `string` | No |  |
+| `country` | `string` | Yes |  |
+| `ip` | `string` | Yes |  |
+| `location` | `map[string]any` | No |  |
+| `postal` | `string` | No |  |
+| `subdivision` | `string` | No |  |
 
 ### Operations
 
@@ -125,7 +125,7 @@ entity1 := client.Entity1(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Entity1(nil).Load(map[string]any{"id": "entity1_id"}, nil)
+result, err := client.Entity1(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -203,14 +203,14 @@ entity3 := client.Entity3(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | No |  |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `location` | ``$OBJECT`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `subdivision` | ``$STRING`` | No |  |
+| `asn` | `map[string]any` | No |  |
+| `city` | `string` | No |  |
+| `continent` | `string` | No |  |
+| `country` | `string` | Yes |  |
+| `ip` | `string` | Yes |  |
+| `location` | `map[string]any` | No |  |
+| `postal` | `string` | No |  |
+| `subdivision` | `string` | No |  |
 
 ### Operations
 
@@ -256,9 +256,9 @@ info := client.Info(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | ``$ARRAY`` | No |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data_source` | `[]any` | No |  |
+| `last_updated` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 

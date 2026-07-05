@@ -221,25 +221,25 @@ class IpGeolocationApi2SDK:
 
 
     def Entity1(self, data=None) -> "Entity1Entity":
-        """Entity factory: client.Entity1().list({}) / client.Entity1().load({"id": ...})."""
+        """Entity factory: client.Entity1().list() / client.Entity1().load({"id": ...})."""
         from entity.entity1_entity import Entity1Entity
         return Entity1Entity(self, data)
 
 
     def Entity2(self, data=None) -> "Entity2Entity":
-        """Entity factory: client.Entity2().list({}) / client.Entity2().load({"id": ...})."""
+        """Entity factory: client.Entity2().list() / client.Entity2().load({"id": ...})."""
         from entity.entity2_entity import Entity2Entity
         return Entity2Entity(self, data)
 
 
     def Entity3(self, data=None) -> "Entity3Entity":
-        """Entity factory: client.Entity3().list({}) / client.Entity3().load({"id": ...})."""
+        """Entity factory: client.Entity3().list() / client.Entity3().load({"id": ...})."""
         from entity.entity3_entity import Entity3Entity
         return Entity3Entity(self, data)
 
 
     def Info(self, data=None) -> "InfoEntity":
-        """Entity factory: client.Info().list({}) / client.Info().load({"id": ...})."""
+        """Entity factory: client.Info().list() / client.Info().load({"id": ...})."""
         from entity.info_entity import InfoEntity
         return InfoEntity(self, data)
 

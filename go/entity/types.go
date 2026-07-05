@@ -20,8 +20,7 @@ type Entity1 struct {
 	Subdivision *string `json:"subdivision,omitempty"`
 }
 
-// Entity1LoadMatch mirrors the entity1 fields as an all-optional match
-// filter (Go analog of Partial<Entity1>).
+// Entity1LoadMatch is the typed request payload for Entity1.LoadTyped.
 type Entity1LoadMatch struct {
 	Asn *map[string]any `json:"asn,omitempty"`
 	City *string `json:"city,omitempty"`
@@ -37,8 +36,7 @@ type Entity1LoadMatch struct {
 type Entity2 struct {
 }
 
-// Entity2CreateData mirrors the entity2 fields as an all-optional match
-// filter (Go analog of Partial<Entity2>).
+// Entity2CreateData is the typed request payload for Entity2.CreateTyped.
 type Entity2CreateData struct {
 }
 
@@ -66,8 +64,7 @@ type Info struct {
 	Version *string `json:"version,omitempty"`
 }
 
-// InfoListMatch mirrors the info fields as an all-optional match
-// filter (Go analog of Partial<Info>).
+// InfoListMatch is the typed request payload for Info.ListTyped.
 type InfoListMatch struct {
 	DataSource *[]any `json:"data_source,omitempty"`
 	LastUpdated *string `json:"last_updated,omitempty"`

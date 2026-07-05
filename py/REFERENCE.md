@@ -8,7 +8,7 @@ Complete API reference for the IpGeolocationApi2 Python SDK.
 ### Constructor
 
 ```python
-from ip-geolocation-api2_sdk import IpGeolocationApi2SDK
+from ipgeolocationapi2_sdk import IpGeolocationApi2SDK
 
 client = IpGeolocationApi2SDK(options)
 ```
@@ -99,14 +99,14 @@ entity1 = client.Entity1()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | No |  |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `location` | ``$OBJECT`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `subdivision` | ``$STRING`` | No |  |
+| `asn` | `dict` | No |  |
+| `city` | `str` | No |  |
+| `continent` | `str` | No |  |
+| `country` | `str` | Yes |  |
+| `ip` | `str` | Yes |  |
+| `location` | `dict` | No |  |
+| `postal` | `str` | No |  |
+| `subdivision` | `str` | No |  |
 
 ### Operations
 
@@ -115,7 +115,7 @@ entity1 = client.Entity1()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Entity1().load({"id": "entity1_id"})
+result = client.Entity1().load()
 ```
 
 ### Common Methods
@@ -203,14 +203,14 @@ entity3 = client.Entity3()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | No |  |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `location` | ``$OBJECT`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `subdivision` | ``$STRING`` | No |  |
+| `asn` | `dict` | No |  |
+| `city` | `str` | No |  |
+| `continent` | `str` | No |  |
+| `country` | `str` | Yes |  |
+| `ip` | `str` | Yes |  |
+| `location` | `dict` | No |  |
+| `postal` | `str` | No |  |
+| `subdivision` | `str` | No |  |
 
 ### Operations
 
@@ -261,18 +261,18 @@ info = client.Info()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | ``$ARRAY`` | No |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data_source` | `list` | No |  |
+| `last_updated` | `str` | No |  |
+| `version` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Info().list({})
+results = client.Info().list()
 for info in results:
     print(info)
 ```

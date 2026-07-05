@@ -4,6 +4,8 @@
 
 The Golang SDK for the IpGeolocationApi2 API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.Entity1(nil)` — each with the same small set of operations (`List`, `Load`, `Create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -49,12 +51,41 @@ func main() {
     client := sdk.New()
 
     // Load a single entity1 — the value is the loaded record.
-    entity1, err := client.Entity1(nil).Load(map[string]any{"id": "example_id"}, nil)
+    entity1, err := client.Entity1(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(entity1)
 }
+```
+
+
+## Error handling
+
+Every entity operation returns `(value, error)`. Check `err` before
+using the value — there is no exception to catch:
+
+```go
+entity1, err := client.Entity1(nil).Load(nil, nil)
+if err != nil {
+    // handle err
+    return
+}
+_ = entity1
+```
+
+`Direct` follows the same `(value, error)` convention:
+
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
+    "method": "GET",
+    "params": map[string]any{"id": "example_id"},
+})
+if err != nil {
+    // handle err
+}
+_ = result
 ```
 
 
@@ -105,12 +136,12 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 entity1, err := client.Entity1(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(entity1) // the loaded mock data
+fmt.Println(entity1) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -201,8 +232,6 @@ All entities implement the `IpGeolocationApi2Entity` interface.
 | `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
 | `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
 | `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity. |
-| `Update` | `(reqdata, ctrl map[string]any) (any, error)` | Update an existing entity. |
-| `Remove` | `(reqmatch, ctrl map[string]any) (any, error)` | Remove an entity. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -215,16 +244,16 @@ operation's data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `Load` / `Create` | the entity record (`map[string]any`) |
 | `List` | a `[]any` of entity records |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    entity1, err := client.Entity1(nil).Load(map[string]any{"id": "example_id"}, nil)
+    entity1, err := client.Entity1(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // entity1 is the loaded record
+    // entity1 is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -305,19 +334,19 @@ Create an instance: `entity1 := client.Entity1(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asn` | ``$OBJECT`` |  |
-| `city` | ``$STRING`` |  |
-| `continent` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `location` | ``$OBJECT`` |  |
-| `postal` | ``$STRING`` |  |
-| `subdivision` | ``$STRING`` |  |
+| `asn` | `map[string]any` |  |
+| `city` | `string` |  |
+| `continent` | `string` |  |
+| `country` | `string` |  |
+| `ip` | `string` |  |
+| `location` | `map[string]any` |  |
+| `postal` | `string` |  |
+| `subdivision` | `string` |  |
 
 #### Example: Load
 
 ```go
-entity1, err := client.Entity1(nil).Load(map[string]any{"id": "entity1_id"}, nil)
+entity1, err := client.Entity1(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -357,14 +386,14 @@ Create an instance: `entity3 := client.Entity3(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asn` | ``$OBJECT`` |  |
-| `city` | ``$STRING`` |  |
-| `continent` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `location` | ``$OBJECT`` |  |
-| `postal` | ``$STRING`` |  |
-| `subdivision` | ``$STRING`` |  |
+| `asn` | `map[string]any` |  |
+| `city` | `string` |  |
+| `continent` | `string` |  |
+| `country` | `string` |  |
+| `ip` | `string` |  |
+| `location` | `map[string]any` |  |
+| `postal` | `string` |  |
+| `subdivision` | `string` |  |
 
 #### Example: Load
 
@@ -391,9 +420,9 @@ Create an instance: `info := client.Info(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data_source` | ``$ARRAY`` |  |
-| `last_updated` | ``$STRING`` |  |
-| `version` | ``$STRING`` |  |
+| `data_source` | `[]any` |  |
+| `last_updated` | `string` |  |
+| `version` | `string` |  |
 
 #### Example: List
 
@@ -406,12 +435,16 @@ fmt.Println(infos) // the array of records
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -428,9 +461,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller. An unexpected panic triggers the
-`PreUnexpected` hook.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -476,9 +509,9 @@ stores the returned data and match criteria internally.
 
 ```go
 entity1 := client.Entity1(nil)
-entity1.Load(map[string]any{"id": "example_id"}, nil)
+entity1.Load(nil, nil)
 
-// entity1.Data() now returns the loaded entity1 data
+// entity1.Data() now returns the entity1 data from the last load
 // entity1.Match() returns the last match criteria
 ```
 

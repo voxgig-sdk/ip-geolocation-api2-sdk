@@ -25,7 +25,7 @@ class Entity1
     public ?string $subdivision = null;
 }
 
-/** Match filter for Entity1#load (any subset of Entity1 fields). */
+/** Request payload for Entity1#load. */
 class Entity1LoadMatch
 {
     public ?array $asn = null;
@@ -43,7 +43,7 @@ class Entity2
 {
 }
 
-/** Match filter for Entity2#create (any subset of Entity2 fields). */
+/** Request payload for Entity2#create. */
 class Entity2CreateData
 {
 }
@@ -75,7 +75,7 @@ class Info
     public ?string $version = null;
 }
 
-/** Match filter for Info#list (any subset of Info fields). */
+/** Request payload for Info#list. */
 class InfoListMatch
 {
     public ?array $data_source = null;

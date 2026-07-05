@@ -16,12 +16,22 @@ export interface Entity1 {
   subdivision?: string
 }
 
-export type Entity1LoadMatch = Partial<Entity1>
+export interface Entity1LoadMatch {
+  asn?: Record<string, any>
+  city?: string
+  continent?: string
+  country?: string
+  ip?: string
+  location?: Record<string, any>
+  postal?: string
+  subdivision?: string
+}
 
 export interface Entity2 {
 }
 
-export type Entity2CreateData = Partial<Entity2>
+export interface Entity2CreateData {
+}
 
 export interface Entity3 {
   asn?: Record<string, any>
@@ -44,5 +54,9 @@ export interface Info {
   version?: string
 }
 
-export type InfoListMatch = Partial<Info>
+export interface InfoListMatch {
+  data_source?: any[]
+  last_updated?: string
+  version?: string
+}
 

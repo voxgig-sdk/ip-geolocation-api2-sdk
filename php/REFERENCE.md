@@ -8,7 +8,7 @@ Complete API reference for the IpGeolocationApi2 PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/ip-geolocation-api2_sdk.php';
+require_once __DIR__ . '/ipgeolocationapi2_sdk.php';
 
 $client = new IpGeolocationApi2SDK($options);
 ```
@@ -57,11 +57,11 @@ Create a new `Entity3Entity` instance. Pass `null` for no initial data.
 
 Create a new `InfoEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): IpGeolocationApi2Utility`
 
 Return a copy of the SDK utility object.
 
@@ -104,14 +104,14 @@ $entity1 = $client->Entity1();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | No |  |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `location` | ``$OBJECT`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `subdivision` | ``$STRING`` | No |  |
+| `asn` | `array` | No |  |
+| `city` | `string` | No |  |
+| `continent` | `string` | No |  |
+| `country` | `string` | Yes |  |
+| `ip` | `string` | Yes |  |
+| `location` | `array` | No |  |
+| `postal` | `string` | No |  |
+| `subdivision` | `string` | No |  |
 
 ### Operations
 
@@ -120,24 +120,24 @@ $entity1 = $client->Entity1();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Entity1()->load(["id" => "entity1_id"]);
+$result = $client->Entity1()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -146,7 +146,7 @@ Set the entity match criteria.
 Create a new `Entity1Entity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -172,19 +172,19 @@ $result = $client->Entity2()->create([
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -193,7 +193,7 @@ Set the entity match criteria.
 Create a new `Entity2Entity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -210,14 +210,14 @@ $entity3 = $client->Entity3();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | No |  |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `location` | ``$OBJECT`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `subdivision` | ``$STRING`` | No |  |
+| `asn` | `array` | No |  |
+| `city` | `string` | No |  |
+| `continent` | `string` | No |  |
+| `country` | `string` | Yes |  |
+| `ip` | `string` | Yes |  |
+| `location` | `array` | No |  |
+| `postal` | `string` | No |  |
+| `subdivision` | `string` | No |  |
 
 ### Operations
 
@@ -231,19 +231,19 @@ $result = $client->Entity3()->load(["id" => "entity3_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -252,7 +252,7 @@ Set the entity match criteria.
 Create a new `Entity3Entity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -269,35 +269,35 @@ $info = $client->Info();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | ``$ARRAY`` | No |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data_source` | `array` | No |  |
+| `last_updated` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Info()->list([]);
+$results = $client->Info()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -306,7 +306,7 @@ Set the entity match criteria.
 Create a new `InfoEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

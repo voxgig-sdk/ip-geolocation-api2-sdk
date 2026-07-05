@@ -16,7 +16,6 @@ go build -o ip-geolocation-api2-cli ./...
 
 ```sh
 # One-shot: arguments form a single AQL expression
-./ip-geolocation-api2-cli list entity1
 ./ip-geolocation-api2-cli load 1 entity1
 ./ip-geolocation-api2-cli load '{id:1}' entity1
 
@@ -30,7 +29,6 @@ go build -o ip-geolocation-api2-cli ./...
 |----------|----------------------------------------------|----------------------------|
 | `list`   | `[entity]` · `[query entity]`                | List records               |
 | `load`   | `[entity]` · `[query entity]`                | Load a single record       |
-| `update` | `[entity]` · `[query entity]`                | Update a record            |
 
 `query` is either a Map (`{id:1}`) or a Scalar (`1`, treated as `{id:1}`).
 `entity` is one of the SDK's entity names (auto-quoted as an atom).

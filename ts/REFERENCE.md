@@ -152,14 +152,14 @@ const entity1 = client.Entity1()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | No |  |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `location` | ``$OBJECT`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `subdivision` | ``$STRING`` | No |  |
+| `asn` | `Record<string, any>` | No |  |
+| `city` | `string` | No |  |
+| `continent` | `string` | No |  |
+| `country` | `string` | Yes |  |
+| `ip` | `string` | Yes |  |
+| `location` | `Record<string, any>` | No |  |
+| `postal` | `string` | No |  |
+| `subdivision` | `string` | No |  |
 
 ### Operations
 
@@ -168,7 +168,7 @@ const entity1 = client.Entity1()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Entity1().load({ id: 'entity1_id' })
+const result = await client.Entity1().load()
 ```
 
 ### Common Methods
@@ -254,14 +254,14 @@ const entity3 = client.Entity3()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | No |  |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `location` | ``$OBJECT`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `subdivision` | ``$STRING`` | No |  |
+| `asn` | `Record<string, any>` | No |  |
+| `city` | `string` | No |  |
+| `continent` | `string` | No |  |
+| `country` | `string` | Yes |  |
+| `ip` | `string` | Yes |  |
+| `location` | `Record<string, any>` | No |  |
+| `postal` | `string` | No |  |
+| `subdivision` | `string` | No |  |
 
 ### Operations
 
@@ -311,9 +311,9 @@ const info = client.Info()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | ``$ARRAY`` | No |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data_source` | `any[]` | No |  |
+| `last_updated` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 

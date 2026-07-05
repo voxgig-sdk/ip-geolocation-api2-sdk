@@ -102,14 +102,14 @@ local entity1 = client:Entity1(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | No |  |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `location` | ``$OBJECT`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `subdivision` | ``$STRING`` | No |  |
+| `asn` | `table` | No |  |
+| `city` | `string` | No |  |
+| `continent` | `string` | No |  |
+| `country` | `string` | Yes |  |
+| `ip` | `string` | Yes |  |
+| `location` | `table` | No |  |
+| `postal` | `string` | No |  |
+| `subdivision` | `string` | No |  |
 
 ### Operations
 
@@ -118,7 +118,7 @@ local entity1 = client:Entity1(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Entity1():load({ id = "entity1_id" })
+local result, err = client:Entity1():load()
 ```
 
 ### Common Methods
@@ -208,14 +208,14 @@ local entity3 = client:Entity3(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | No |  |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `location` | ``$OBJECT`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `subdivision` | ``$STRING`` | No |  |
+| `asn` | `table` | No |  |
+| `city` | `string` | No |  |
+| `continent` | `string` | No |  |
+| `country` | `string` | Yes |  |
+| `ip` | `string` | Yes |  |
+| `location` | `table` | No |  |
+| `postal` | `string` | No |  |
+| `subdivision` | `string` | No |  |
 
 ### Operations
 
@@ -267,9 +267,9 @@ local info = client:Info(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | ``$ARRAY`` | No |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data_source` | `table` | No |  |
+| `last_updated` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 

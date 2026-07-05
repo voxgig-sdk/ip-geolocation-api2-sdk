@@ -64,8 +64,13 @@ class Entity3Entity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: Entity3LoadMatch, ctrl=None) -> Entity3:
+    def load(self, reqmatch=None, ctrl=None) -> Entity3:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.Entity3().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,

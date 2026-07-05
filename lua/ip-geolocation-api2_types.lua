@@ -17,6 +17,14 @@
 ---@field subdivision? string
 
 ---@class Entity1LoadMatch
+---@field asn? table
+---@field city? string
+---@field continent? string
+---@field country? string
+---@field ip? string
+---@field location? table
+---@field postal? string
+---@field subdivision? string
 
 ---@class Entity2
 
@@ -41,6 +49,9 @@
 ---@field version? string
 
 ---@class InfoListMatch
+---@field data_source? table
+---@field last_updated? string
+---@field version? string
 
 local M = {}
 

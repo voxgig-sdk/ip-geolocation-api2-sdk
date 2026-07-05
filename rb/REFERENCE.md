@@ -8,7 +8,7 @@ Complete API reference for the IpGeolocationApi2 Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'ip-geolocation-api2_sdk'
+require_relative 'IpGeolocationApi2_sdk'
 
 client = IpGeolocationApi2SDK.new(options)
 ```
@@ -105,14 +105,14 @@ entity1 = client.Entity1
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | No |  |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `location` | ``$OBJECT`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `subdivision` | ``$STRING`` | No |  |
+| `asn` | `Hash` | No |  |
+| `city` | `String` | No |  |
+| `continent` | `String` | No |  |
+| `country` | `String` | Yes |  |
+| `ip` | `String` | Yes |  |
+| `location` | `Hash` | No |  |
+| `postal` | `String` | No |  |
+| `subdivision` | `String` | No |  |
 
 ### Operations
 
@@ -121,7 +121,7 @@ entity1 = client.Entity1
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Entity1.load({ "id" => "entity1_id" })
+result = client.Entity1.load()
 ```
 
 ### Common Methods
@@ -211,14 +211,14 @@ entity3 = client.Entity3
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | No |  |
-| `city` | ``$STRING`` | No |  |
-| `continent` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `location` | ``$OBJECT`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `subdivision` | ``$STRING`` | No |  |
+| `asn` | `Hash` | No |  |
+| `city` | `String` | No |  |
+| `continent` | `String` | No |  |
+| `country` | `String` | Yes |  |
+| `ip` | `String` | Yes |  |
+| `location` | `Hash` | No |  |
+| `postal` | `String` | No |  |
+| `subdivision` | `String` | No |  |
 
 ### Operations
 
@@ -270,18 +270,18 @@ info = client.Info
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | ``$ARRAY`` | No |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data_source` | `Array` | No |  |
+| `last_updated` | `String` | No |  |
+| `version` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Info.list(nil)
+results = client.Info.list
 ```
 
 ### Common Methods
