@@ -103,6 +103,7 @@ same parameters as `Direct()`.
 
 ```go
 entity1 := client.Entity1(nil)
+fmt.Println(entity1.GetName()) // "entity1"
 ```
 
 ### Fields
@@ -126,6 +127,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Entity1(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -156,6 +161,7 @@ Return the entity name.
 
 ```go
 entity2 := client.Entity2(nil)
+fmt.Println(entity2.GetName()) // "entity2"
 ```
 
 ### Operations
@@ -167,6 +173,10 @@ Create a new entity with the given data.
 ```go
 result, err := client.Entity2(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -197,6 +207,7 @@ Return the entity name.
 
 ```go
 entity3 := client.Entity3(nil)
+fmt.Println(entity3.GetName()) // "entity3"
 ```
 
 ### Fields
@@ -220,6 +231,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Entity3(nil).Load(map[string]any{"id": "entity3_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -250,6 +265,7 @@ Return the entity name.
 
 ```go
 info := client.Info(nil)
+fmt.Println(info.GetName()) // "info"
 ```
 
 ### Fields
@@ -268,6 +284,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Info(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

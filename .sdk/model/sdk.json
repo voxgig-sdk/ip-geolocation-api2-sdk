@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -540,13 +537,16 @@
       "info": {
         "auth": false,
         "description": "IP geolocation API",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "url": "https://api.country.is"
           }
         ],
+        "summary": "IP geolocation API",
         "title": "Country",
-        "version": "4.2.3"
+        "version": "4.2.3",
+        "website": "https://country.is"
       },
       "option": {},
       "target": {
@@ -599,6 +599,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -649,6 +652,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

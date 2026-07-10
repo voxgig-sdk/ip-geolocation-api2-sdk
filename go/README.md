@@ -369,6 +369,10 @@ Create an instance: `entity2 := client.Entity2(nil)`
 ```go
 result, err := client.Entity2(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 

@@ -11,9 +11,9 @@ main: {
           url: "https://api.country.is"
         }
       ]
+      summary: "IP geolocation API"
       title: "Country"
       version: "4.2.3"
+      website: "https://country.is"
     }
   }
-}
-
