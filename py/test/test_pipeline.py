@@ -16,11 +16,11 @@
 import pytest
 
 from ipgeolocationapi2_sdk import IpGeolocationApi2SDK
-from core.error import IpGeolocationApi2Error
-from core.result import IpGeolocationApi2Result
-from core.response import IpGeolocationApi2Response
-from core.spec import IpGeolocationApi2Spec
-from feature.base_feature import IpGeolocationApi2BaseFeature
+from ipgeolocationapi2_sdk.core.error import IpGeolocationApi2Error
+from ipgeolocationapi2_sdk.core.result import IpGeolocationApi2Result
+from ipgeolocationapi2_sdk.core.response import IpGeolocationApi2Response
+from ipgeolocationapi2_sdk.core.spec import IpGeolocationApi2Spec
+from ipgeolocationapi2_sdk.feature.base_feature import IpGeolocationApi2BaseFeature
 
 
 def _client():

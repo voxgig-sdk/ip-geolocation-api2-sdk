@@ -23,8 +23,8 @@ module IpGeolocationApi2TestRunner
   end
 
   def self.env_override(m)
-    live = getenv("IPGEOLOCATIONAPI2_TEST_LIVE")
-    override = getenv("IPGEOLOCATIONAPI2_TEST_OVERRIDE")
+    live = getenv("IP_GEOLOCATION_API2_TEST_LIVE")
+    override = getenv("IP_GEOLOCATION_API2_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module IpGeolocationApi2TestRunner
       end
     end
 
-    explain = getenv("IPGEOLOCATIONAPI2_TEST_EXPLAIN")
-    m["IPGEOLOCATIONAPI2_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("IP_GEOLOCATION_API2_TEST_EXPLAIN")
+    m["IP_GEOLOCATION_API2_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

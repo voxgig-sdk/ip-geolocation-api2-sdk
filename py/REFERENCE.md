@@ -261,8 +261,8 @@ info = client.Info()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | `list` | No |  |
-| `last_updated` | `str` | No |  |
+| `dataSources` | `list` | No |  |
+| `lastUpdated` | `str` | No |  |
 | `version` | `str` | No |  |
 
 ### Operations

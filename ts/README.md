@@ -121,7 +121,8 @@ Create a mock client for unit testing — no server required:
 const client = IpGeolocationApi2SDK.test()
 
 const entity1 = await client.Entity1().load()
-// entity1 is a bare entity populated with mock response data
+// entity1 is the entity, populated with mock response data
+// — call entity1.data() for the record itself
 console.log(entity1)
 ```
 
@@ -334,8 +335,8 @@ API path: `/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `data_source` |  |
-| `last_updated` |  |
+| `dataSources` |  |
+| `lastUpdated` |  |
 | `version` |  |
 
 Operations: list.
@@ -439,8 +440,8 @@ Create an instance: `const info = client.Info()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data_source` | `any[]` |  |
-| `last_updated` | `string` |  |
+| `dataSources` | `any[]` |  |
+| `lastUpdated` | `string` |  |
 | `version` | `string` |  |
 
 #### Example: List

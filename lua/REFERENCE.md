@@ -267,8 +267,8 @@ local info = client:Info(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | `table` | No |  |
-| `last_updated` | `string` | No |  |
+| `dataSources` | `table` | No |  |
+| `lastUpdated` | `string` | No |  |
 | `version` | `string` | No |  |
 
 ### Operations

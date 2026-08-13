@@ -68,11 +68,11 @@ function entity3_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["IPGEOLOCATIONAPI__TEST_ENTITY__ENTID"] = {},
-    ["IPGEOLOCATIONAPI__TEST_LIVE"] = "FALSE",
+    ["IP_GEOLOCATION_API2_TEST_ENTITY3_ENTID"] = {},
+    ["IP_GEOLOCATION_API2_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["IPGEOLOCATIONAPI__TEST_LIVE"] == "TRUE"
+  local live = env["IP_GEOLOCATION_API2_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

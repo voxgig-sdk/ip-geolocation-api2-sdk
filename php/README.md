@@ -35,7 +35,7 @@ $client = new IpGeolocationApi2SDK();
 
 ```php
 try {
-    // load() returns the bare Entity1 record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Entity1 record (throws on error).
     $entity1 = $client->Entity1()->load();
     print_r($entity1);
 } catch (\Throwable $err) {
@@ -123,7 +123,8 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = IpGeolocationApi2SDK::test();
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $entity1 = $client->Entity1()->load();
 print_r($entity1);
 ```
@@ -227,7 +228,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -292,8 +293,8 @@ API path: `/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `data_source` |  |
-| `last_updated` |  |
+| `dataSources` |  |
+| `lastUpdated` |  |
 | `version` |  |
 
 Operations: List.
@@ -331,7 +332,7 @@ Create an instance: `$entity1 = $client->Entity1();`
 #### Example: Load
 
 ```php
-// load() returns the bare Entity1 record (throws on error).
+// load() returns the ENTITY — call data_get() for the Entity1 record (throws on error).
 $entity1 = $client->Entity1()->load();
 ```
 
@@ -380,7 +381,7 @@ Create an instance: `$entity3 = $client->Entity3();`
 #### Example: Load
 
 ```php
-// load() returns the bare Entity3 record (throws on error).
+// load() returns the ENTITY — call data_get() for the Entity3 record (throws on error).
 $entity3 = $client->Entity3()->load(["id" => "entity3_id"]);
 ```
 
@@ -399,8 +400,8 @@ Create an instance: `$info = $client->Info();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data_source` | `array` |  |
-| `last_updated` | `string` |  |
+| `dataSources` | `array` |  |
+| `lastUpdated` | `string` |  |
 | `version` | `string` |  |
 
 #### Example: List

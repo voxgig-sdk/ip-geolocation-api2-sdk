@@ -70,16 +70,16 @@ class Entity3LoadMatch
 /** Info entity data model. */
 class Info
 {
-    public ?array $data_source = null;
-    public ?string $last_updated = null;
+    public ?array $dataSources = null;
+    public ?string $lastUpdated = null;
     public ?string $version = null;
 }
 
 /** Request payload for Info#list. */
 class InfoListMatch
 {
-    public ?array $data_source = null;
-    public ?string $last_updated = null;
+    public ?array $dataSources = null;
+    public ?string $lastUpdated = null;
     public ?string $version = null;
 }
 

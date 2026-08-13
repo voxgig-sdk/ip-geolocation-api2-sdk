@@ -34,7 +34,7 @@ client = IpGeolocationApi2SDK.new
 
 ```ruby
 begin
-  # load returns the bare Entity1 record (raises on error).
+  # load returns the ENTITY — call data_get for the Entity1 record (raises on error).
   entity1 = client.Entity1.load()
   puts entity1
 rescue => err
@@ -117,7 +117,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = IpGeolocationApi2SDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 entity1 = client.Entity1.load()
 puts entity1
 ```
@@ -282,8 +283,8 @@ API path: `/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `data_source` |  |
-| `last_updated` |  |
+| `dataSources` |  |
+| `lastUpdated` |  |
 | `version` |  |
 
 Operations: List.
@@ -321,7 +322,7 @@ Create an instance: `entity1 = client.Entity1`
 #### Example: Load
 
 ```ruby
-# load returns the bare Entity1 record (raises on error).
+# load returns the ENTITY — call data_get for the Entity1 record (raises on error).
 entity1 = client.Entity1.load()
 ```
 
@@ -370,7 +371,7 @@ Create an instance: `entity3 = client.Entity3`
 #### Example: Load
 
 ```ruby
-# load returns the bare Entity3 record (raises on error).
+# load returns the ENTITY — call data_get for the Entity3 record (raises on error).
 entity3 = client.Entity3.load({ "id" => "entity3_id" })
 ```
 
@@ -389,8 +390,8 @@ Create an instance: `info = client.Info`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data_source` | `Array` |  |
-| `last_updated` | `String` |  |
+| `dataSources` | `Array` |  |
+| `lastUpdated` | `String` |  |
 | `version` | `String` |  |
 
 #### Example: List

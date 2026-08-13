@@ -27,6 +27,7 @@ guide: {
   entity: info: {
     path: "/info": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.dataSources`")|top
     }
   }
 

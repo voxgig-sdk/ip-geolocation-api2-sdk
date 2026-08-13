@@ -6,12 +6,12 @@ main: kit: entity: info: {
 
   fields: [
     {
-      name: "data_source"
+      name: "dataSources"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "last_updated"
+      name: "lastUpdated"
       req: false
       type: "`$STRING`"
     }
@@ -35,7 +35,7 @@ main: kit: entity: info: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.dataSources`"
           }
         }
       ]

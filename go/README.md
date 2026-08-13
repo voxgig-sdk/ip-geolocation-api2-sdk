@@ -307,8 +307,8 @@ API path: `/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `"data_source"` |  |
-| `"last_updated"` |  |
+| `"dataSources"` |  |
+| `"lastUpdated"` |  |
 | `"version"` |  |
 
 Operations: List.
@@ -424,8 +424,8 @@ Create an instance: `info := client.Info(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data_source` | `[]any` |  |
-| `last_updated` | `string` |  |
+| `dataSources` | `[]any` |  |
+| `lastUpdated` | `string` |  |
 | `version` | `string` |  |
 
 #### Example: List

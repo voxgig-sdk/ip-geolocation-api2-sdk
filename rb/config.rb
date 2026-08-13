@@ -106,6 +106,7 @@ module IpGeolocationApi2Config
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/",
                   "parts" => [],
@@ -151,6 +152,7 @@ module IpGeolocationApi2Config
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/",
                   "parts" => [],
@@ -265,6 +267,7 @@ module IpGeolocationApi2Config
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}",
                   "parts" => [
@@ -299,14 +302,14 @@ module IpGeolocationApi2Config
           "fields" => [
             {
               "active" => true,
-              "name" => "data_source",
+              "name" => "dataSources",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 0,
             },
             {
               "active" => true,
-              "name" => "last_updated",
+              "name" => "lastUpdated",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 1,
@@ -328,6 +331,7 @@ module IpGeolocationApi2Config
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/info",
                   "parts" => [
@@ -336,7 +340,7 @@ module IpGeolocationApi2Config
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.dataSources`",
                   },
                   "index$" => 0,
                 },

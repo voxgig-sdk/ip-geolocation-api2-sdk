@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from ipgeolocationapi2_sdk.utility.voxgig_struct import voxgig_struct as vs
 from ipgeolocationapi2_sdk import IpGeolocationApi2SDK
-from core import helpers
+from ipgeolocationapi2_sdk.core import helpers
 from test import runner
 
 
@@ -56,11 +56,11 @@ def _entity1_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "IPGEOLOCATIONAPI__TEST_ENTITY__ENTID": {},
-        "IPGEOLOCATIONAPI__TEST_LIVE": "FALSE",
+        "IP_GEOLOCATION_API2_TEST_ENTITY1_ENTID": {},
+        "IP_GEOLOCATION_API2_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("IPGEOLOCATIONAPI__TEST_LIVE") == "TRUE"
+    live = env.get("IP_GEOLOCATION_API2_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

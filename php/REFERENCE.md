@@ -269,8 +269,8 @@ $info = $client->Info();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | `array` | No |  |
-| `last_updated` | `string` | No |  |
+| `dataSources` | `array` | No |  |
+| `lastUpdated` | `string` | No |  |
 | `version` | `string` | No |  |
 
 ### Operations

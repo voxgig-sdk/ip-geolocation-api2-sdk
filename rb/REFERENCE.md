@@ -270,8 +270,8 @@ info = client.Info
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | `Array` | No |  |
-| `last_updated` | `String` | No |  |
+| `dataSources` | `Array` | No |  |
+| `lastUpdated` | `String` | No |  |
 | `version` | `String` | No |  |
 
 ### Operations

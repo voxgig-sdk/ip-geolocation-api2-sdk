@@ -138,34 +138,34 @@ Entity3LoadMatch = Struct.new(
 
 # Info entity data model.
 #
-# @!attribute [rw] data_source
+# @!attribute [rw] dataSources
 #   @return [Array, nil]
 #
-# @!attribute [rw] last_updated
+# @!attribute [rw] lastUpdated
 #   @return [String, nil]
 #
 # @!attribute [rw] version
 #   @return [String, nil]
 Info = Struct.new(
-  :data_source,
-  :last_updated,
+  :dataSources,
+  :lastUpdated,
   :version,
   keyword_init: true
 )
 
 # Request payload for Info#list.
 #
-# @!attribute [rw] data_source
+# @!attribute [rw] dataSources
 #   @return [Array, nil]
 #
-# @!attribute [rw] last_updated
+# @!attribute [rw] lastUpdated
 #   @return [String, nil]
 #
 # @!attribute [rw] version
 #   @return [String, nil]
 InfoListMatch = Struct.new(
-  :data_source,
-  :last_updated,
+  :dataSources,
+  :lastUpdated,
   :version,
   keyword_init: true
 )

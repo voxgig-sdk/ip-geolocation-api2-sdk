@@ -2,18 +2,18 @@
   "existing": {
     "info": {
       "INFO00": {
-        "data_source": [],
-        "last_updated": "s1f",
+        "dataSources": [],
+        "lastUpdated": "s1f",
         "version": "s20"
       },
       "INFO01": {
-        "data_source": [],
-        "last_updated": "s3d",
+        "dataSources": [],
+        "lastUpdated": "s3d",
         "version": "s3e"
       },
       "INFO02": {
-        "data_source": [],
-        "last_updated": "s5b",
+        "dataSources": [],
+        "lastUpdated": "s5b",
         "version": "s5c"
       }
     }
@@ -21,8 +21,8 @@
   "new": {
     "info": {
       "info_ref01": {
-        "data_source": [],
-        "last_updated": "s79",
+        "dataSources": [],
+        "lastUpdated": "s79",
         "version": "s7a"
       }
     }

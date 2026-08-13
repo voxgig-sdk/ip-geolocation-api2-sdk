@@ -44,13 +44,13 @@
 ---@field id string
 
 ---@class Info
----@field data_source? table
----@field last_updated? string
+---@field dataSources? table
+---@field lastUpdated? string
 ---@field version? string
 
 ---@class InfoListMatch
----@field data_source? table
----@field last_updated? string
+---@field dataSources? table
+---@field lastUpdated? string
 ---@field version? string
 
 local M = {}

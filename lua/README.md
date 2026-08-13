@@ -274,8 +274,8 @@ API path: `/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `data_source` |  |
-| `last_updated` |  |
+| `dataSources` |  |
+| `lastUpdated` |  |
 | `version` |  |
 
 Operations: List.
@@ -379,8 +379,8 @@ Create an instance: `local info = client:Info(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data_source` | `table` |  |
-| `last_updated` | `string` |  |
+| `dataSources` | `table` |  |
+| `lastUpdated` | `string` |  |
 | `version` | `string` |  |
 
 #### Example: List

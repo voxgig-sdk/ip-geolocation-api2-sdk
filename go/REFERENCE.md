@@ -272,8 +272,8 @@ fmt.Println(info.GetName()) // "info"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | `[]any` | No |  |
-| `last_updated` | `string` | No |  |
+| `dataSources` | `[]any` | No |  |
+| `lastUpdated` | `string` | No |  |
 | `version` | `string` | No |  |
 
 ### Operations

@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = IpGeolocationApi2SDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = IpGeolocationApi2SDK.test({
+  entity: {
+    entity1: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const entity1 = await client.Entity1().load()
-// entity1 is a bare Entity1 populated with mock data
+// entity1 is the Entity1 entity, populated with mock data
+// — call entity1.data() for the record itself
 console.log(entity1)
 ```
 
@@ -185,7 +194,7 @@ require_once 'ipgeolocationapi2_sdk.php';
 $client = new IpGeolocationApi2SDK();
 
 
-// Load a specific entity1 (returns the bare record; throws on error)
+// Load a specific entity1 (returns the ENTITY; call data_get() for the record; throws on error)
 $entity1 = $client->Entity1()->load();
 print_r($entity1);
 ```
@@ -213,7 +222,7 @@ require_relative "IpGeolocationApi2_sdk"
 client = IpGeolocationApi2SDK.new
 
 
-# Load a specific entity1 (returns the bare record; raises on error)
+# Load a specific entity1 (returns the ENTITY; call data_get for the record)
 entity1 = client.Entity1.load()
 puts entity1
 ```
@@ -347,6 +356,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://api.country.is](https://api.country.is)
 

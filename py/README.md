@@ -38,7 +38,7 @@ client = IpGeolocationApi2SDK()
 
 ### 3. Load an entity1
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -122,7 +122,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = IpGeolocationApi2SDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 entity1 = client.Entity1().load()
 # entity1 contains the mock response record
 ```
@@ -223,7 +224,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -288,8 +289,8 @@ API path: `/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `data_source` |  |
-| `last_updated` |  |
+| `dataSources` |  |
+| `lastUpdated` |  |
 | `version` |  |
 
 Operations: List.
@@ -393,8 +394,8 @@ Create an instance: `info = client.Info()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data_source` | `list` |  |
-| `last_updated` | `str` |  |
+| `dataSources` | `list` |  |
+| `lastUpdated` | `str` |  |
 | `version` | `str` |  |
 
 #### Example: List

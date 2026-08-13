@@ -105,6 +105,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/",
                 ["parts"] = {},
@@ -150,6 +151,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/",
                 ["parts"] = {},
@@ -264,6 +266,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}",
                 ["parts"] = {
@@ -298,14 +301,14 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "data_source",
+            ["name"] = "dataSources",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "last_updated",
+            ["name"] = "lastUpdated",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 1,
@@ -327,6 +330,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/info",
                 ["parts"] = {
@@ -335,7 +339,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.dataSources`",
                 },
                 ["index$"] = 0,
               },

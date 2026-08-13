@@ -49,14 +49,14 @@ export interface Entity3LoadMatch {
 }
 
 export interface Info {
-  data_source?: any[]
-  last_updated?: string
+  dataSources?: any[]
+  lastUpdated?: string
   version?: string
 }
 
 export interface InfoListMatch {
-  data_source?: any[]
-  last_updated?: string
+  dataSources?: any[]
+  lastUpdated?: string
   version?: string
 }
 

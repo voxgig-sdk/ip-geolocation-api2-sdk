@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# IpGeolocationApi2 SDK exists test
 
 import pytest
 from ipgeolocationapi2_sdk import IpGeolocationApi2SDK
