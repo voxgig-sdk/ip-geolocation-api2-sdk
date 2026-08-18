@@ -33,7 +33,7 @@ class InfoEntityTest < Minitest::Test
     assert_equal 3, seen.length
 
     # Inbound: streaming active -> yields each item from the feature.
-    cfg = IpGeolocationApi2Config.make_config
+    cfg = IpGeolocationApi2Config.shared_config
     if cfg["feature"].is_a?(Hash) && cfg["feature"].key?("streaming")
       sdk = IpGeolocationApi2SDK.test(seed, { "feature" => { "streaming" => { "active" => true } } })
       got = []
