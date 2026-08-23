@@ -33,6 +33,9 @@ class IpGeolocationApi2Config
         return [
             "main" => [
                 "name" => "IpGeolocationApi2",
+                "slug" => "ip-geolocation-api2",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
