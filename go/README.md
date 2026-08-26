@@ -294,6 +294,7 @@ API path: `/`
 | `"city"` |  |
 | `"continent"` |  |
 | `"country"` |  |
+| `"id"` |  |
 | `"ip"` |  |
 | `"location"` |  |
 | `"postal"` |  |
@@ -394,6 +395,7 @@ Create an instance: `entity3 := client.Entity3(nil)`
 | `city` | `string` |  |
 | `continent` | `string` |  |
 | `country` | `string` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `location` | `map[string]any` |  |
 | `postal` | `string` |  |

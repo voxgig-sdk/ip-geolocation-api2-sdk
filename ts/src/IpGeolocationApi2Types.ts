@@ -38,6 +38,7 @@ export interface Entity3 {
   city?: string
   continent?: string
   country: string
+  id?: string
   ip: string
   location?: Record<string, any>
   postal?: string

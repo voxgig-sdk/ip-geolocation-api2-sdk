@@ -104,6 +104,9 @@ end
 # @!attribute [rw] country
 #   @return [String]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] ip
 #   @return [String]
 #
@@ -120,6 +123,7 @@ Entity3 = Struct.new(
   :city,
   :continent,
   :country,
+  :id,
   :ip,
   :location,
   :postal,

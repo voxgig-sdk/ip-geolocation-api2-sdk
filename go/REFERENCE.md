@@ -218,6 +218,7 @@ fmt.Println(entity3.GetName()) // "entity3"
 | `city` | `string` | No |  |
 | `continent` | `string` | No |  |
 | `country` | `string` | Yes |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `location` | `map[string]any` | No |  |
 | `postal` | `string` | No |  |

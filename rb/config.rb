@@ -28,6 +28,7 @@ module IpGeolocationApi2Config
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -177,6 +178,10 @@ module IpGeolocationApi2Config
             {
               "name" => "country",
               "req" => true,
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "id",
               "type" => "`$STRING`",
             },
             {

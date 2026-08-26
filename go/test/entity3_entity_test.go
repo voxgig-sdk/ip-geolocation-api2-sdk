@@ -61,13 +61,19 @@ func TestEntity3Entity(t *testing.T) {
 
 		// LOAD
 		entity3Ref01Ent := client.Entity3(nil)
-		entity3Ref01MatchDt0 := map[string]any{}
+		entity3Ref01MatchDt0 := map[string]any{
+			"id": entity3Ref01Data["id"],
+		}
 		entity3Ref01DataDt0Loaded, err := entity3Ref01Ent.Load(entity3Ref01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if entity3Ref01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		entity3Ref01DataDt0LoadResult := core.ToMapAny(entityData(entity3Ref01DataDt0Loaded))
+		if entity3Ref01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if entity3Ref01DataDt0LoadResult["id"] != entity3Ref01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

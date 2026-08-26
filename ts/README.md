@@ -322,6 +322,7 @@ API path: `/`
 | `city` |  |
 | `continent` |  |
 | `country` |  |
+| `id` |  |
 | `ip` |  |
 | `location` |  |
 | `postal` |  |
@@ -414,6 +415,7 @@ Create an instance: `const entity3 = client.Entity3()`
 | `city` | `string` |  |
 | `continent` | `string` |  |
 | `country` | `string` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `location` | `Record<string, any>` |  |
 | `postal` | `string` |  |

@@ -261,6 +261,7 @@ API path: `/`
 | `city` |  |
 | `continent` |  |
 | `country` |  |
+| `id` |  |
 | `ip` |  |
 | `location` |  |
 | `postal` |  |
@@ -353,6 +354,7 @@ Create an instance: `local entity3 = client:Entity3(nil)`
 | `city` | `string` |  |
 | `continent` | `string` |  |
 | `country` | `string` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `location` | `table` |  |
 | `postal` | `string` |  |

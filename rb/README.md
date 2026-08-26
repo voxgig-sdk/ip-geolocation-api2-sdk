@@ -270,6 +270,7 @@ API path: `/`
 | `city` |  |
 | `continent` |  |
 | `country` |  |
+| `id` |  |
 | `ip` |  |
 | `location` |  |
 | `postal` |  |
@@ -363,6 +364,7 @@ Create an instance: `entity3 = client.Entity3`
 | `city` | `String` |  |
 | `continent` | `String` |  |
 | `country` | `String` |  |
+| `id` | `String` |  |
 | `ip` | `String` |  |
 | `location` | `Hash` |  |
 | `postal` | `String` |  |

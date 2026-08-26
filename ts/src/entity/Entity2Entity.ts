@@ -44,7 +44,8 @@ class Entity2Entity extends IpGeolocationApi2EntityBase<Entity2> {
     const {
       makeContext,
       done,
-      error,
+      // The registry name is `makeError`; `error` is the local alias.
+      makeError: error,
       featureHook,
       makePoint,
       makeRequest,

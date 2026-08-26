@@ -41,9 +41,13 @@ class Entity3EntityTest < Minitest::Test
 
     # LOAD
     entity3_ref01_ent = client.Entity3(nil)
-    entity3_ref01_match_dt0 = {}
+    entity3_ref01_match_dt0 = {
+      "id" => entity3_ref01_data["id"],
+    }
     entity3_ref01_data_dt0_loaded = entity3_ref01_ent.load(entity3_ref01_match_dt0, nil)
-    assert !entity3_ref01_data_dt0_loaded.nil?
+    entity3_ref01_data_dt0_load_result = Helpers.to_map(entity3_ref01_data_dt0_loaded.respond_to?(:data_get) ? entity3_ref01_data_dt0_loaded.data_get : entity3_ref01_data_dt0_loaded)
+    assert !entity3_ref01_data_dt0_load_result.nil?
+    assert_equal entity3_ref01_data_dt0_load_result["id"], entity3_ref01_data["id"]
 
   end
 end

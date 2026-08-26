@@ -40,7 +40,8 @@ class Config {
      test:     {
       "options": {
         "active": false
-      }
+      },
+      "transport": "base"
     },
 
   }
@@ -206,6 +207,10 @@ class Config {
         {
           "name": "country",
           "req": true,
+          "type": "`$STRING`"
+        },
+        {
+          "name": "id",
           "type": "`$STRING`"
         },
         {

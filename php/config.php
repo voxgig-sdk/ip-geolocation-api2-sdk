@@ -42,6 +42,7 @@ class IpGeolocationApi2Config
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -191,6 +192,10 @@ class IpGeolocationApi2Config
             [
               'name' => 'country',
               'req' => true,
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'id',
               'type' => '`$STRING`',
             ],
             [

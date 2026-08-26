@@ -44,10 +44,14 @@ describe("Entity3Entity", function()
 
     -- LOAD
     local entity3_ref01_ent = client:Entity3(nil)
-    local entity3_ref01_match_dt0 = {}
+    local entity3_ref01_match_dt0 = {
+      id = entity3_ref01_data["id"],
+    }
     local entity3_ref01_data_dt0_loaded, err = entity3_ref01_ent:load(entity3_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(entity3_ref01_data_dt0_loaded)
+    local entity3_ref01_data_dt0_load_result = helpers.to_map(type(entity3_ref01_data_dt0_loaded) == 'table' and entity3_ref01_data_dt0_loaded.data_get and entity3_ref01_data_dt0_loaded:data_get() or entity3_ref01_data_dt0_loaded)
+    assert.is_not_nil(entity3_ref01_data_dt0_load_result)
+    assert.are.equal(entity3_ref01_data_dt0_load_result["id"], entity3_ref01_data["id"])
 
   end)
 end)

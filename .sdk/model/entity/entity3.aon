@@ -26,6 +26,11 @@ main: kit: entity: entity3: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "ip"
       req: true
       type: "`$STRING`"
@@ -46,6 +51,11 @@ main: kit: entity: entity3: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "entity3"
   op: {

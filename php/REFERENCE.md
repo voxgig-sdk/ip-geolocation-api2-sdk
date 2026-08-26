@@ -214,6 +214,7 @@ $entity3 = $client->Entity3();
 | `city` | `string` | No |  |
 | `continent` | `string` | No |  |
 | `country` | `string` | Yes |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `location` | `array` | No |  |
 | `postal` | `string` | No |  |

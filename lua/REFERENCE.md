@@ -212,6 +212,7 @@ local entity3 = client:Entity3(nil)
 | `city` | `string` | No |  |
 | `continent` | `string` | No |  |
 | `country` | `string` | Yes |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `location` | `table` | No |  |
 | `postal` | `string` | No |  |

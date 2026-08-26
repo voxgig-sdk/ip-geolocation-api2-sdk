@@ -207,6 +207,7 @@ entity3 = client.Entity3()
 | `city` | `str` | No |  |
 | `continent` | `str` | No |  |
 | `country` | `str` | Yes |  |
+| `id` | `str` | No |  |
 | `ip` | `str` | Yes |  |
 | `location` | `dict` | No |  |
 | `postal` | `str` | No |  |

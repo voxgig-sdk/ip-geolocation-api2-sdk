@@ -35,6 +35,7 @@
 ---@field city? string
 ---@field continent? string
 ---@field country string
+---@field id? string
 ---@field ip string
 ---@field location? table
 ---@field postal? string

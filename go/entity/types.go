@@ -50,6 +50,7 @@ type Entity3 struct {
 	City *string `json:"city,omitempty"`
 	Continent *string `json:"continent,omitempty"`
 	Country string `json:"country"`
+	Id *string `json:"id,omitempty"`
 	Ip string `json:"ip"`
 	Location *map[string]any `json:"location,omitempty"`
 	Postal *string `json:"postal,omitempty"`

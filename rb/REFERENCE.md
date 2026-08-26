@@ -215,6 +215,7 @@ entity3 = client.Entity3
 | `city` | `String` | No |  |
 | `continent` | `String` | No |  |
 | `country` | `String` | Yes |  |
+| `id` | `String` | No |  |
 | `ip` | `String` | Yes |  |
 | `location` | `Hash` | No |  |
 | `postal` | `String` | No |  |

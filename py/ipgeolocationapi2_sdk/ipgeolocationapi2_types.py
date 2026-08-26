@@ -58,6 +58,7 @@ class Entity3(Entity3Required, total=False):
     asn: dict
     city: str
     continent: str
+    id: str
     location: dict
     postal: str
     subdivision: str

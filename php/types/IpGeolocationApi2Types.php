@@ -55,6 +55,7 @@ class Entity3
     public ?string $city = null;
     public ?string $continent = null;
     public string $country;
+    public ?string $id = null;
     public string $ip;
     public ?array $location = null;
     public ?string $postal = null;

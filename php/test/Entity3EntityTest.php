@@ -48,9 +48,13 @@ class Entity3EntityTest extends TestCase
 
         // LOAD
         $entity3_ref01_ent = $client->Entity3(null);
-        $entity3_ref01_match_dt0 = [];
+        $entity3_ref01_match_dt0 = [
+            "id" => $entity3_ref01_data["id"],
+        ];
         $entity3_ref01_data_dt0_loaded = $entity3_ref01_ent->load($entity3_ref01_match_dt0, null);
-        $this->assertNotNull($entity3_ref01_data_dt0_loaded);
+        $entity3_ref01_data_dt0_load_result = Helpers::to_map(is_object($entity3_ref01_data_dt0_loaded) && method_exists($entity3_ref01_data_dt0_loaded, 'data_get') ? $entity3_ref01_data_dt0_loaded->data_get() : $entity3_ref01_data_dt0_loaded);
+        $this->assertNotNull($entity3_ref01_data_dt0_load_result);
+        $this->assertEquals($entity3_ref01_data_dt0_load_result["id"], $entity3_ref01_data["id"]);
 
     }
 }
