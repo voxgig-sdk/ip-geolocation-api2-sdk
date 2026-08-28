@@ -28,14 +28,7 @@ class Entity1
 /** Request payload for Entity1#load. */
 class Entity1LoadMatch
 {
-    public ?array $asn = null;
-    public ?string $city = null;
-    public ?string $continent = null;
-    public ?string $country = null;
-    public ?string $ip = null;
-    public ?array $location = null;
-    public ?string $postal = null;
-    public ?string $subdivision = null;
+    public ?string $field = null;
 }
 
 /** Entity2 entity data model. */
@@ -46,6 +39,7 @@ class Entity2
 /** Request payload for Entity2#create. */
 class Entity2CreateData
 {
+    public ?string $field = null;
 }
 
 /** Entity3 entity data model. */
@@ -66,6 +60,7 @@ class Entity3
 class Entity3LoadMatch
 {
     public string $id;
+    public ?string $field = null;
 }
 
 /** Info entity data model. */

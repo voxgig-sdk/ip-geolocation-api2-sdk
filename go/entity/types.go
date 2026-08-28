@@ -26,14 +26,7 @@ type Entity1 struct {
 
 // Entity1LoadMatch is the typed request payload for Entity1.LoadTyped.
 type Entity1LoadMatch struct {
-	Asn *map[string]any `json:"asn,omitempty"`
-	City *string `json:"city,omitempty"`
-	Continent *string `json:"continent,omitempty"`
-	Country *string `json:"country,omitempty"`
-	Ip *string `json:"ip,omitempty"`
-	Location *map[string]any `json:"location,omitempty"`
-	Postal *string `json:"postal,omitempty"`
-	Subdivision *string `json:"subdivision,omitempty"`
+	Field *string `json:"field,omitempty"`
 }
 
 // Entity2 is the typed data model for the entity2 entity.
@@ -42,6 +35,7 @@ type Entity2 struct {
 
 // Entity2CreateData is the typed request payload for Entity2.CreateTyped.
 type Entity2CreateData struct {
+	Field *string `json:"field,omitempty"`
 }
 
 // Entity3 is the typed data model for the entity3 entity.
@@ -60,6 +54,7 @@ type Entity3 struct {
 // Entity3LoadMatch is the typed request payload for Entity3.LoadTyped.
 type Entity3LoadMatch struct {
 	Id string `json:"id"`
+	Field *string `json:"field,omitempty"`
 }
 
 // Info is the typed data model for the info entity.

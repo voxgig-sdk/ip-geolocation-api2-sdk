@@ -31,22 +31,15 @@ class Entity1(Entity1Required, total=False):
 
 
 class Entity1LoadMatch(TypedDict, total=False):
-    asn: dict
-    city: str
-    continent: str
-    country: str
-    ip: str
-    location: dict
-    postal: str
-    subdivision: str
+    field: str
 
 
 class Entity2(TypedDict):
     pass
 
 
-class Entity2CreateData(TypedDict):
-    pass
+class Entity2CreateData(TypedDict, total=False):
+    field: str
 
 
 class Entity3Required(TypedDict):
@@ -64,8 +57,12 @@ class Entity3(Entity3Required, total=False):
     subdivision: str
 
 
-class Entity3LoadMatch(TypedDict):
+class Entity3LoadMatchRequired(TypedDict):
     id: str
+
+
+class Entity3LoadMatch(Entity3LoadMatchRequired, total=False):
+    field: str
 
 
 class Info(TypedDict, total=False):

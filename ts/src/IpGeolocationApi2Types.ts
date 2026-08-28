@@ -17,20 +17,14 @@ export interface Entity1 {
 }
 
 export interface Entity1LoadMatch {
-  asn?: Record<string, any>
-  city?: string
-  continent?: string
-  country?: string
-  ip?: string
-  location?: Record<string, any>
-  postal?: string
-  subdivision?: string
+  field?: string
 }
 
 export interface Entity2 {
 }
 
 export interface Entity2CreateData {
+  field?: string
 }
 
 export interface Entity3 {
@@ -47,6 +41,7 @@ export interface Entity3 {
 
 export interface Entity3LoadMatch {
   id: string
+  field?: string
 }
 
 export interface Info {

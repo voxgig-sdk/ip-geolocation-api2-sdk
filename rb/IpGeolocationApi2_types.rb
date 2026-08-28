@@ -47,38 +47,10 @@ Entity1 = Struct.new(
 
 # Request payload for Entity1#load.
 #
-# @!attribute [rw] asn
-#   @return [Hash, nil]
-#
-# @!attribute [rw] city
-#   @return [String, nil]
-#
-# @!attribute [rw] continent
-#   @return [String, nil]
-#
-# @!attribute [rw] country
-#   @return [String, nil]
-#
-# @!attribute [rw] ip
-#   @return [String, nil]
-#
-# @!attribute [rw] location
-#   @return [Hash, nil]
-#
-# @!attribute [rw] postal
-#   @return [String, nil]
-#
-# @!attribute [rw] subdivision
+# @!attribute [rw] field
 #   @return [String, nil]
 Entity1LoadMatch = Struct.new(
-  :asn,
-  :city,
-  :continent,
-  :country,
-  :ip,
-  :location,
-  :postal,
-  :subdivision,
+  :field,
   keyword_init: true
 )
 
@@ -87,8 +59,13 @@ class Entity2
 end
 
 # Request payload for Entity2#create.
-class Entity2CreateData
-end
+#
+# @!attribute [rw] field
+#   @return [String, nil]
+Entity2CreateData = Struct.new(
+  :field,
+  keyword_init: true
+)
 
 # Entity3 entity data model.
 #
@@ -135,8 +112,12 @@ Entity3 = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] field
+#   @return [String, nil]
 Entity3LoadMatch = Struct.new(
   :id,
+  :field,
   keyword_init: true
 )
 

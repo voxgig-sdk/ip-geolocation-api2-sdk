@@ -17,18 +17,12 @@
 ---@field subdivision? string
 
 ---@class Entity1LoadMatch
----@field asn? table
----@field city? string
----@field continent? string
----@field country? string
----@field ip? string
----@field location? table
----@field postal? string
----@field subdivision? string
+---@field field? string
 
 ---@class Entity2
 
 ---@class Entity2CreateData
+---@field field? string
 
 ---@class Entity3
 ---@field asn? table
@@ -43,6 +37,7 @@
 
 ---@class Entity3LoadMatch
 ---@field id string
+---@field field? string
 
 ---@class Info
 ---@field dataSources? table
