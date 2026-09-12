@@ -52,7 +52,7 @@ func TestEntity2Entity(t *testing.T) {
 		// CREATE
 		entity2Ref01Ent := client.Entity2(nil)
 		entity2Ref01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "entity2"}, setup.data), "entity2_ref01"))
+			vs.GetPath(setup.data, []any{"new", "entity2"}), "entity2_ref01"))
 
 		entity2Ref01DataResult, err := entity2Ref01Ent.Create(entity2Ref01Data, nil)
 		if err != nil {
@@ -90,7 +90,7 @@ func entity2BasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"entity201", "entity202", "entity203"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -118,10 +118,22 @@ func entity2BasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["IP_GEOLOCATION_API2_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewIpGeolocationApi2SDK(core.ToMapAny(mergedOpts))
 	}

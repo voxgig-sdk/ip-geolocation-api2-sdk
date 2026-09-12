@@ -1,6 +1,14 @@
 # IpGeolocationApi2 SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -111,7 +119,7 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/",
-                "parts": [],
+                "segments": [],
                 "select": {
                   "exist": [
                     "field",
@@ -121,6 +129,7 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [],
               },
             ],
           },
@@ -152,7 +161,7 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/",
-                "parts": [],
+                "segments": [],
                 "select": {
                   "exist": [
                     "field",
@@ -162,6 +171,7 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [],
               },
             ],
           },
@@ -211,6 +221,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "entity3",
         "op": {
           "load": {
@@ -242,14 +256,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{ip}",
-                "parts": [
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "ip": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "field",
@@ -260,6 +276,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "{id}",
+                ],
               },
             ],
           },
@@ -275,6 +294,7 @@ def make_config():
             "type": "`$ARRAY`",
           },
           {
+            "format": "date-time",
             "name": "lastUpdated",
             "type": "`$STRING`",
           },
@@ -294,14 +314,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/info",
-                "parts": [
-                  "info",
+                "segments": [
+                  {
+                    "lit": "info",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.dataSources`",
                 },
+                "parts": [
+                  "info",
+                ],
               },
             ],
           },

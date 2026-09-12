@@ -11,6 +11,7 @@ main: kit: entity: info: {
       type: "`$ARRAY`"
     }
     {
+      format: "date-time"
       name: "lastUpdated"
       req: false
       type: "`$STRING`"
@@ -30,8 +31,10 @@ main: kit: entity: info: {
         {
           method: "GET"
           orig: "/info"
-          parts: [
-            "info"
+          segments: [
+            {
+              lit: "info"
+            }
           ]
           transform: {
             req: "`reqdata`"

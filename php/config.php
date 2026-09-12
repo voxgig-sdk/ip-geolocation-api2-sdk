@@ -116,7 +116,7 @@ class IpGeolocationApi2Config
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/',
-                  'parts' => [],
+                  'segments' => [],
                   'select' => [
                     'exist' => [
                       'field',
@@ -126,6 +126,7 @@ class IpGeolocationApi2Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [],
                 ],
               ],
             ],
@@ -157,7 +158,7 @@ class IpGeolocationApi2Config
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/',
-                  'parts' => [],
+                  'segments' => [],
                   'select' => [
                     'exist' => [
                       'field',
@@ -167,6 +168,7 @@ class IpGeolocationApi2Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [],
                 ],
               ],
             ],
@@ -216,6 +218,10 @@ class IpGeolocationApi2Config
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'entity3',
           'op' => [
             'load' => [
@@ -247,12 +253,14 @@ class IpGeolocationApi2Config
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ip}',
-                  'parts' => [
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'ip' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -264,6 +272,9 @@ class IpGeolocationApi2Config
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    '{id}',
                   ],
                 ],
               ],
@@ -280,6 +291,7 @@ class IpGeolocationApi2Config
               'type' => '`$ARRAY`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'lastUpdated',
               'type' => '`$STRING`',
             ],
@@ -299,13 +311,18 @@ class IpGeolocationApi2Config
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/info',
-                  'parts' => [
-                    'info',
+                  'segments' => [
+                    [
+                      'lit' => 'info',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.dataSources`',
+                  ],
+                  'parts' => [
+                    'info',
                   ],
                 ],
               ],

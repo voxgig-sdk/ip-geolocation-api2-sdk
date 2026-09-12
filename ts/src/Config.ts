@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -131,7 +142,7 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/",
-              "parts": [],
+              "segments": [],
               "select": {
                 "exist": [
                   "field"
@@ -140,7 +151,8 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": []
             }
           ]
         }
@@ -172,7 +184,7 @@ class Config {
               "kind": "http",
               "method": "POST",
               "orig": "/",
-              "parts": [],
+              "segments": [],
               "select": {
                 "exist": [
                   "field"
@@ -181,7 +193,8 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": []
             }
           ]
         }
@@ -231,6 +244,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "entity3",
       "op": {
         "load": {
@@ -262,14 +279,16 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/{ip}",
-              "parts": [
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "ip": "id"
                 }
               },
+              "segments": [
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "field",
@@ -279,7 +298,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "{id}"
+              ]
             }
           ]
         }
@@ -295,6 +317,7 @@ class Config {
           "type": "`$ARRAY`"
         },
         {
+          "format": "date-time",
           "name": "lastUpdated",
           "type": "`$STRING`"
         },
@@ -314,14 +337,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/info",
-              "parts": [
-                "info"
+              "segments": [
+                {
+                  "lit": "info"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.dataSources`"
-              }
+              },
+              "parts": [
+                "info"
+              ]
             }
           ]
         }
@@ -337,6 +365,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 
