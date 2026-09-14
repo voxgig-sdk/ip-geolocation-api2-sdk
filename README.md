@@ -105,7 +105,7 @@ local result, err = client:Entity1():load()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/ip-geolocation-api2` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geolocation-api2-sdk/releases) |
+| TypeScript | `@voxgig-sdk/ip-geolocation-api2-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geolocation-api2-sdk/releases) |
 | Python | `voxgig-sdk-ip-geolocation-api2` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geolocation-api2-sdk/releases) |
 | PHP | `voxgig-sdk/ip-geolocation-api2` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geolocation-api2-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/ip-geolocation-api2-sdk/go` | `go get github.com/voxgig-sdk/ip-geolocation-api2-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:Entity1():load()
 ### TypeScript
 
 ```ts
-import { IpGeolocationApi2SDK } from '@voxgig-sdk/ip-geolocation-api2'
+import { IpGeolocationApi2SDK } from '@voxgig-sdk/ip-geolocation-api2-sdk'
 
 const client = new IpGeolocationApi2SDK()
 
