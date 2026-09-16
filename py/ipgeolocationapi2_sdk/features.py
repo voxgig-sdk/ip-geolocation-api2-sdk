@@ -1,12 +1,18 @@
 # IpGeolocationApi2 SDK feature factory
 
 from ipgeolocationapi2_sdk.feature.base_feature import IpGeolocationApi2BaseFeature
+from ipgeolocationapi2_sdk.feature.ratelimit_feature import IpGeolocationApi2RatelimitFeature
+from ipgeolocationapi2_sdk.feature.retry_feature import IpGeolocationApi2RetryFeature
 from ipgeolocationapi2_sdk.feature.test_feature import IpGeolocationApi2TestFeature
+from ipgeolocationapi2_sdk.feature.timeout_feature import IpGeolocationApi2TimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: IpGeolocationApi2BaseFeature(),
+    "ratelimit": lambda: IpGeolocationApi2RatelimitFeature(),
+    "retry": lambda: IpGeolocationApi2RetryFeature(),
     "test": lambda: IpGeolocationApi2TestFeature(),
+    "timeout": lambda: IpGeolocationApi2TimeoutFeature(),
 }
 
 

@@ -29,6 +29,12 @@ main: kit: entity: info: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /info"
+            json: "{\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"dataSources\":{\"example\":[\"maxmind\",\"cloudflare\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lastUpdated\":{\"format\":\"date-time\",\"type\":\"string\"},\"version\":{\"example\":\"4.2.3\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Service metadata\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/info"
           segments: [

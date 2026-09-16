@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { IpGeolocationApi2SDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('Entity1Entity', async () => {
 
     const live = 'TRUE' === process.env.IP_GEOLOCATION_API2_TEST_LIVE
     for (const op of ['load']) {
-      if (maybeSkipControl(t, 'entityOp', 'entity1.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'entity1.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set IP_GEOLOCATION_API2_TEST_ENTITY1_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"asn","req":false,"type":"`$OBJECT`","index$":0},{"active":true,"name":"city","req":false,"type":"`$STRING`","index$":1},{"active":true,"name":"continent","req":false,"type":"`$STRING`","index$":2},{"active":true,"name":"country","req":true,"type":"`$STRING`","index$":3},{"active":true,"name":"ip","req":true,"type":"`$STRING`","index$":4},{"active":true,"name":"location","req":false,"type":"`$OBJECT`","index$":5},{"active":true,"name":"postal","req":false,"type":"`$STRING`","index$":6},{"active":true,"name":"subdivision","req":false,"type":"`$STRING`","index$":7}],"name":"entity1","op":{"load":{"input":"data","name":"load","points":[{"active":true,"args":{"query":[{"active":true,"example":"city,asn","kind":"query","name":"field","orig":"field","reqd":false,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /","json":"{\"parameters\":[{\"description\":\"Comma-separated list of extra fields to include. Valid values: city, continent, subdivision, postal, location, asn.\",\"in\":\"query\",\"name\":\"fields\",\"schema\":{\"example\":\"city,asn\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"asn\":{\"nullable\":true,\"properties\":{\"number\":{\"example\":15169,\"type\":\"integer\"},\"organization\":{\"example\":\"Google LLC\",\"type\":\"string\"}},\"type\":\"object\"},\"city\":{\"example\":\"Mountain View\",\"nullable\":true,\"type\":\"string\"},\"continent\":{\"example\":\"NA\",\"nullable\":true,\"type\":\"string\"},\"country\":{\"example\":\"US\",\"nullable\":true,\"type\":\"string\"},\"ip\":{\"example\":\"8.8.8.8\",\"type\":\"string\"},\"location\":{\"nullable\":true,\"properties\":{\"accuracy_radius\":{\"example\":1000,\"type\":\"integer\"},\"latitude\":{\"example\":37.386,\"type\":\"number\"},\"longitude\":{\"example\":-122.0838,\"type\":\"number\"},\"time_zone\":{\"example\":\"America/Los_Angeles\",\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"postal\":{\"example\":\"94043\",\"nullable\":true,\"type\":\"string\"},\"subdivision\":{\"example\":\"CA\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"ip\",\"country\"],\"type\":\"object\"}}},\"description\":\"Successful lookup\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"example\":404,\"type\":\"integer\"},\"message\":{\"example\":\"Not Found\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"IP could not be resolved\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/","segments":[],"select":{"exist":["field"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"entity1","name__orig":"entity1","Name":"Entity1","name_":"entity1","name-":"entity1","NAME":"ENTITY1","index$":0}, {"active":true,"entity":"entity1","key$":"BasicEntity1Flow","kind":"basic","name":"BasicEntity1Flow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"entity1_ref01","srcdatavar":"entity1_ref01_data","suffix":"_dt0"},"match":{},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-entity1_ref01"}}],"index$":0}]}, 'Entity1')
     }
     const client = setup.client
     const struct = setup.struct
@@ -109,13 +108,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['IP_GEOLOCATION_API2_TEST_ENTITY1_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'IP_GEOLOCATION_API2_TEST_ENTITY1_ENTID': idmap,
     'IP_GEOLOCATION_API2_TEST_LIVE': 'FALSE',
@@ -126,7 +118,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.IP_GEOLOCATION_API2_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['IP_GEOLOCATION_API2_TEST_ENTITY1_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new IpGeolocationApi2SDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -138,7 +136,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -151,7 +150,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.IP_GEOLOCATION_API2_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

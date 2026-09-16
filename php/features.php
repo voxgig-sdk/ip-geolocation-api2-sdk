@@ -4,7 +4,10 @@ declare(strict_types=1);
 // IpGeolocationApi2 SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class IpGeolocationApi2Features
@@ -14,8 +17,14 @@ class IpGeolocationApi2Features
         switch ($name) {
             case "base":
                 return new IpGeolocationApi2BaseFeature();
+            case "ratelimit":
+                return new IpGeolocationApi2RatelimitFeature();
+            case "retry":
+                return new IpGeolocationApi2RetryFeature();
             case "test":
                 return new IpGeolocationApi2TestFeature();
+            case "timeout":
+                return new IpGeolocationApi2TimeoutFeature();
             default:
                 return new IpGeolocationApi2BaseFeature();
         }
@@ -31,7 +40,10 @@ class IpGeolocationApi2Features
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

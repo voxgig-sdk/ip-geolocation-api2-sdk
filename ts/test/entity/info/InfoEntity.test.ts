@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { IpGeolocationApi2SDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('InfoEntity', async () => {
 
     const live = 'TRUE' === process.env.IP_GEOLOCATION_API2_TEST_LIVE
     for (const op of ['list']) {
-      if (maybeSkipControl(t, 'entityOp', 'info.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'info.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set IP_GEOLOCATION_API2_TEST_INFO_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"dataSources","req":false,"type":"`$ARRAY`","index$":0},{"active":true,"format":"date-time","name":"lastUpdated","req":false,"type":"`$STRING`","index$":1},{"active":true,"name":"version","req":false,"type":"`$STRING`","index$":2}],"name":"info","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{},"contract":{"id":"GET /info","json":"{\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"dataSources\":{\"example\":[\"maxmind\",\"cloudflare\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lastUpdated\":{\"format\":\"date-time\",\"type\":\"string\"},\"version\":{\"example\":\"4.2.3\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Service metadata\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/info","segments":[{"lit":"info"}],"select":{},"transform":{"req":"`reqdata`","res":"`body.dataSources`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"info","name__orig":"info","Name":"Info","name_":"info","name-":"info","NAME":"INFO","index$":3}, {"active":true,"entity":"info","key$":"BasicInfoFlow","kind":"basic","name":"BasicInfoFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"info_ref01"}}],"index$":0}]}, 'Info')
     }
     const client = setup.client
     const struct = setup.struct
@@ -109,13 +108,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['IP_GEOLOCATION_API2_TEST_INFO_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'IP_GEOLOCATION_API2_TEST_INFO_ENTID': idmap,
     'IP_GEOLOCATION_API2_TEST_LIVE': 'FALSE',
@@ -126,7 +118,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.IP_GEOLOCATION_API2_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['IP_GEOLOCATION_API2_TEST_INFO_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new IpGeolocationApi2SDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -138,7 +136,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -151,7 +150,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.IP_GEOLOCATION_API2_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

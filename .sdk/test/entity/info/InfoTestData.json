@@ -26,5 +26,47 @@
         "version": "s7a"
       }
     }
+  },
+  "requests": {
+    "GET /info": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "dataSources": {
+                      "example": [
+                        "maxmind",
+                        "cloudflare"
+                      ],
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "lastUpdated": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "version": {
+                      "example": "4.2.3",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Service metadata"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }
