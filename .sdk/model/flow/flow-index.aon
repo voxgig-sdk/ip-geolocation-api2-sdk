@@ -1,6 +1,6 @@
 # Flows
 
-@"BasicEntity1Flow.aon"
-@"BasicEntity2Flow.aon"
-@"BasicEntity3Flow.aon"
-@"BasicInfoFlow.aon"
+@"./BasicEntity1Flow.aon"
+@"./BasicEntity2Flow.aon"
+@"./BasicEntity3Flow.aon"
+@"./BasicInfoFlow.aon"

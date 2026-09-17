@@ -127,18 +127,18 @@ class Config {
 
     entity: {
       
-      entity1: {
-      },
-
-      entity2: {
-      },
-
-      entity3: {
-      },
-
-      info: {
-      },
-
+        entity1: {
+        },
+  
+        entity2: {
+        },
+  
+        entity3: {
+        },
+  
+        info: {
+        },
+  
     }
   }
 
